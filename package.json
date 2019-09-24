@@ -1,0 +1,27 @@
+{
+  "name": "falafel-utils",
+  "version": "0.0.1",
+  "description": "Common utiliy functions used in connectors.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trayio/falafel-utils.git"
+  },
+  "keywords": [
+    "falafel",
+    "connectors"
+  ],
+  "files": [
+     "index.js",
+     "/lib"
+  ],
+  "author": "tray.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trayio/falafel-utils/issues"
+  },
+  "homepage": "https://github.com/trayio/falafel-utils#readme"
+}
