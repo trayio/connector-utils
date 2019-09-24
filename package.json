@@ -15,13 +15,19 @@
     "connectors"
   ],
   "files": [
-     "index.js",
-     "/lib"
+    "index.js",
+    "/lib"
   ],
   "author": "tray.io",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/trayio/falafel-utils/issues"
   },
-  "homepage": "https://github.com/trayio/falafel-utils#readme"
+  "homepage": "https://github.com/trayio/falafel-utils#readme",
+  "devDependencies": {
+    "eslint": "~6.4.0"
+  },
+  "dependencies": {
+    "lodash": "~4.17.15"
+  }
 }
