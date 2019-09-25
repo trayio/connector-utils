@@ -1,5 +1,5 @@
 {
-  "name": "falafel-utils",
+  "name": "@trayio/falafel-utils",
   "version": "0.0.1",
   "description": "Common utiliy functions used in connectors.",
   "main": "index.js",
