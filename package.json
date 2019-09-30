@@ -1,10 +1,10 @@
 {
   "name": "@trayio/falafel-utils",
   "version": "0.0.1",
-  "description": "Common utiliy functions used in connectors.",
+  "description": "Common utility functions used in connectors.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest tests"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,12 @@
   },
   "homepage": "https://github.com/trayio/falafel-utils#readme",
   "devDependencies": {
-    "eslint": "~6.4.0"
+    "eslint": "^6.1.0",
+    "eslint-plugin-jest": "^22.17.0",
+    "jest-json-schema": "^2.1.0"
   },
   "dependencies": {
-    "lodash": "~4.17.15"
+    "lodash": "~4.17.15",
+    "mustache": "^3.1.0"
   }
 }

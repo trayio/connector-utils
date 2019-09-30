@@ -6,4 +6,5 @@ Common utility functions used in connectors.
 - lookup helper
 - ddl helper
 - xml formatter
-- a deep map helper (dynamic function that can specify deep map functionality IE camelCasing keys or removing empty objects or custom function)
+- camelCaseKeys
+- removeEmptyObjects
