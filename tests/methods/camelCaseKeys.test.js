@@ -9,20 +9,20 @@ const input = {
 	nested_keys: {
 		top: {
 			nested_key_one: 'value',
-			nested_key_two: number
-		}
+			nested_key_two: number,
+		},
 	},
 	object_array: {
 		top: [
 			{
 				nested_key_one: 'value',
-				nested_key_two: number
+				nested_key_two: number,
 			},
 			{
 				nested_key_one: 'value',
-				nested_key_two: number
-			}
-		]
+				nested_key_two: number,
+			},
+		],
 	},
 	nested_object_array: {
 		top: [
@@ -30,24 +30,28 @@ const input = {
 				nested_key_one: [
 					{
 						deep_key_one: number,
-						deep_key_two: 'value'
+						deep_key_two: 'value',
 					},
 					{
 						deep_key_one: number,
-						deep_key_two: 'value'
-					}
+						deep_key_two: 'value',
+					},
 				],
-				nested_key_two: number
+				nested_key_two: number,
 			},
 			{
 				nested_key_one: 'value',
-				nested_key_two: number
-			}
-		]
+				nested_key_two: number,
+			},
+		],
 	},
 };
 
 describe('Object keys should be correctly camelCased', () => {
+	test('It should just return the parameter if no object is passed', () => {
+		expect(camelCaseKeys('Some value')).toEqual('Some value');
+	});
+
 	test('It camelCases top level keys', () => {
 		expect(camelCaseKeys(input.top_level)).toEqual({
 			keyOne: 'value',
@@ -60,8 +64,8 @@ describe('Object keys should be correctly camelCased', () => {
 		expect(camelCaseKeys(input.nested_keys)).toEqual({
 			top: {
 				nestedKeyOne: 'value',
-				nestedKeyTwo: number
-			}
+				nestedKeyTwo: number,
+			},
 		});
 	});
 
@@ -70,13 +74,13 @@ describe('Object keys should be correctly camelCased', () => {
 			top: [
 				{
 					nestedKeyOne: 'value',
-					nestedKeyTwo: number
+					nestedKeyTwo: number,
 				},
 				{
 					nestedKeyOne: 'value',
-					nestedKeyTwo: number
-				}
-			]
+					nestedKeyTwo: number,
+				},
+			],
 		});
 	});
 
@@ -87,20 +91,20 @@ describe('Object keys should be correctly camelCased', () => {
 					nestedKeyOne: [
 						{
 							deepKeyOne: number,
-							deepKeyTwo: 'value'
+							deepKeyTwo: 'value',
 						},
 						{
 							deepKeyOne: number,
-							deepKeyTwo: 'value'
-						}
+							deepKeyTwo: 'value',
+						},
 					],
-					nestedKeyTwo: number
+					nestedKeyTwo: number,
 				},
 				{
 					nestedKeyOne: 'value',
-					nestedKeyTwo: number
-				}
-			]
+					nestedKeyTwo: number,
+				},
+			],
 		});
 	});
 
@@ -114,20 +118,20 @@ describe('Object keys should be correctly camelCased', () => {
 			nestedKeys: {
 				top: {
 					nestedKeyOne: 'value',
-					nestedKeyTwo: number
-				}
+					nestedKeyTwo: number,
+				},
 			},
 			objectArray: {
 				top: [
 					{
 						nestedKeyOne: 'value',
-						nestedKeyTwo: number
+						nestedKeyTwo: number,
 					},
 					{
 						nestedKeyOne: 'value',
-						nestedKeyTwo: number
-					}
-				]
+						nestedKeyTwo: number,
+					},
+				],
 			},
 			nestedObjectArray: {
 				top: [
@@ -135,20 +139,20 @@ describe('Object keys should be correctly camelCased', () => {
 						nestedKeyOne: [
 							{
 								deepKeyOne: number,
-								deepKeyTwo: 'value'
+								deepKeyTwo: 'value',
 							},
 							{
 								deepKeyOne: number,
-								deepKeyTwo: 'value'
-							}
+								deepKeyTwo: 'value',
+							},
 						],
-						nestedKeyTwo: number
+						nestedKeyTwo: number,
 					},
 					{
 						nestedKeyOne: 'value',
-						nestedKeyTwo: number
-					}
-				]
+						nestedKeyTwo: number,
+					},
+				],
 			},
 		});
 	});

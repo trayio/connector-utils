@@ -1,71 +1,72 @@
 const xml2jsSample = {
-	mediawiki: {
-		$: {
-			xmlns: 'http://www.mediawiki.org/xml/export-0.3/',
-			'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-			'xsi:schemaLocation':
-				'http://www.mediawiki.org/xml/export-0.3/ http://www.mediawiki.org/xml/export-0.3.xsd',
-			version: '0.3',
-			'xml:lang': 'sep11',
+	sample: {
+		chartest: { _: 'Character data here!', $: { desc: 'Test for CHARs' } },
+		cdatatest: {
+			_: 'CDATA here!',
+			$: { desc: 'Test for CDATA', misc: 'true' },
 		},
-		siteinfo: [
-			{
-				sitename: ['September 11 Memories'],
-				base: ['http://sep11.wikipedia.org/wiki/In_Memoriam'],
-				generator: ['MediaWiki 1.12alpha'],
-				case: ['first-letter'],
-				namespaces: [
-					{
-						namespace: [
-							{ _: 'Talk', $: { key: '1' } },
-							{ _: 'User', $: { key: '2' } },
-						],
-					},
-				],
+		cdatawhitespacetest: {
+			_: '   ',
+			$: { desc: 'Test for CDATA with whitespace', misc: 'true' },
+		},
+		nochartest: { $: { desc: 'No data', misc: 'false' } },
+		nochildrentest: { $: { desc: 'No data', misc: 'false' } },
+		whitespacetest: {
+			_: '\n\tLine One\n\tLine Two\n',
+			$: { desc: 'Test for normalizing and trimming' },
+		},
+		listtest: {
+			$: { attr: 'Attribute' },
+			item: [
+				{
+					_:
+						'\n\t\tThis  is\n\t\t\n\t\tcharacter\n\t\t\n\t\tdata!\n\t\t\n\t',
+					subitem: ['Foo(1)', 'Foo(2)', 'Foo(3)', 'Foo(4)'],
+				},
+				'Qux.',
+				'Quux.',
+			],
+			single: 'Single',
+		},
+		arraytest: {
+			item: [{ subitem: 'Baz.' }, { subitem: ['Foo.', 'Bar.'] }],
+		},
+		emptytest: '',
+		tagcasetest: {
+			tAg: 'something',
+			TAG: 'something else',
+			tag: 'something third',
+		},
+		ordertest: { one: ['1', '4'], two: ['2', '5'], three: ['3', '6'] },
+		validatortest: {
+			emptyarray: '',
+			oneitemarray: { item: 'Bar.' },
+			numbertest: '42',
+			stringtest: '43',
+		},
+		'pfx:top': {
+			$: { 'xmlns:pfx': 'http://foo.com', 'pfx:attr': 'baz' },
+			middle: { $: { xmlns: 'http://bar.com' } },
+		},
+		attrNameProcessTest: {
+			$: {
+				camelCaseAttr: 'camelCaseAttrValue',
+				lowercaseattr: 'lowercaseattrvalue',
 			},
-		],
-		page: [
-			{
-				title: ['In Memoriam'],
-				id: ['6'],
-				revision: [
-					{
-						id: ['398905'],
-						timestamp: ['2006-10-29T03:30:51Z'],
-						contributor: [{ username: ['Timrem'], id: ['259'] }],
-						comment: ['merge from September 11:About'],
-						text: [{ $: { id: '398647' } }],
-					},
-				],
+		},
+		attrValueProcessTest: {
+			$: {
+				camelCaseAttr: 'camelCaseAttrValue',
+				lowerCaseAttr: 'lowercaseattrvalue',
 			},
-			{
-				title: ['Personal experiences'],
-				id: ['7'],
-				revision: [
-					{
-						id: ['398866'],
-						timestamp: ['2006-10-29T02:02:26Z'],
-						contributor: [{ username: ['Timrem'], id: ['259'] }],
-						comment: ['subst:ing'],
-						text: [{ $: { id: '398608' } }],
-					},
-				],
-			},
-			{
-				title: ['Category:September 11, 2001'],
-				id: ['3304'],
-				revision: [
-					{
-						id: ['398843'],
-						timestamp: ['2006-10-28T15:15:49Z'],
-						contributor: [{ username: ['Timrem'], id: ['259'] }],
-						minor: [''],
-						comment: ['+cat'],
-						text: [{ $: { id: '398585' } }],
-					},
-				],
-			},
-		],
+		},
+		tagNameProcessTest: '',
+		valueProcessTest: 'some value',
+		textordertest: {
+			_: 'this is text with     in the middle',
+			b: 'markup',
+			em: 'like this',
+		},
 	},
 };
 
