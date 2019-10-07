@@ -5,9 +5,6 @@ module.exports = {
 	},
 	globals: {
 		_: true,
-		when: true,
-		mout: true,
-		falafel: true,
 	},
 	plugins: [
 		"jest"
