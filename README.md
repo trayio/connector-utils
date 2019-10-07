@@ -4,10 +4,12 @@ Common utility functions used in connectors.
 ## Classes
 
 <dl>
-<dt><a href="#UserInputError">UserInputError</a></dt>
-<dd></dd>
-<dt><a href="#ConnectorError">ConnectorError</a></dt>
-<dd></dd>
+<dt><a href="#UserInputError">UserInputError</a> ⇐ <code>Error</code></dt>
+<dd><p>Class representing a UserInputError</p>
+</dd>
+<dt><a href="#ConnectorError">ConnectorError</a> ⇐ <code>Error</code></dt>
+<dd><p>Class representing a ConnectorError</p>
+</dd>
 </dl>
 
 ## Functions
@@ -42,8 +44,11 @@ and a counter keep track of how many levels of the nested structure iterated thr
 
 <a name="UserInputError"></a>
 
-## UserInputError
-**Kind**: custom error class  
+## UserInputError ⇐ <code>Error</code>
+Class representing a UserInputError
+
+**Kind**: global class  
+**Extends**: <code>Error</code>  
 <a name="new_UserInputError_new"></a>
 
 ### new UserInputError(message, [code], ...params)
@@ -58,8 +63,11 @@ Custom error to throw for issues concerning User Input.
 
 <a name="ConnectorError"></a>
 
-## ConnectorError
-**Kind**: custom error class  
+## ConnectorError ⇐ <code>Error</code>
+Class representing a ConnectorError
+
+**Kind**: global class  
+**Extends**: <code>Error</code>  
 <a name="new_ConnectorError_new"></a>
 
 ### new ConnectorError(message, [code], ...params)
