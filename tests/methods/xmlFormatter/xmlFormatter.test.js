@@ -2,12 +2,6 @@ const xmlFormatter = require('../../../lib/xmlFormatter');
 const xml2jsSample = require('./xmlSample');
 
 describe('XML outputs should be formatted to correct JSON', () => {
-	test('It should throw an error if the collection depth exceeds 20', () => {
-		expect(() => xmlFormatter(xml2jsSample, 'siteinfo', {}, 20)).toThrow(
-			'The nested structure of the output is too large.',
-		);
-	});
-
 	test('It should correctly format XML2JS JSON to regular JSON', () => {
 		expect(xmlFormatter(xml2jsSample)).toEqual({
 			sample: {
