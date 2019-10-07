@@ -1,4 +1,5 @@
-const camelCaseKeys = require('../../lib/camelCaseKeys');
+const _ = require('lodash');
+const mapKeys = require('../../lib/mapKeys');
 const number = 10;
 const input = {
 	top_level: {
@@ -49,11 +50,11 @@ const input = {
 
 describe('Object keys should be correctly camelCased', () => {
 	test('It should just return the parameter if no object is passed', () => {
-		expect(camelCaseKeys('Some value')).toEqual('Some value');
+		expect(mapKeys('Some value')).toEqual('Some value');
 	});
 
 	test('It camelCases top level keys', () => {
-		expect(camelCaseKeys(input.top_level)).toEqual({
+		expect(mapKeys(input.top_level, _.camelCase)).toEqual({
 			keyOne: 'value',
 			keyTwo: 'value',
 			keyThree: number,
@@ -61,7 +62,7 @@ describe('Object keys should be correctly camelCased', () => {
 	});
 
 	test('It camelCases nested keys', () => {
-		expect(camelCaseKeys(input.nested_keys)).toEqual({
+		expect(mapKeys(input.nested_keys, _.camelCase)).toEqual({
 			top: {
 				nestedKeyOne: 'value',
 				nestedKeyTwo: number,
@@ -70,7 +71,7 @@ describe('Object keys should be correctly camelCased', () => {
 	});
 
 	test('It camelCases keys in array of objects', () => {
-		expect(camelCaseKeys(input.object_array)).toEqual({
+		expect(mapKeys(input.object_array, _.camelCase)).toEqual({
 			top: [
 				{
 					nestedKeyOne: 'value',
@@ -85,7 +86,7 @@ describe('Object keys should be correctly camelCased', () => {
 	});
 
 	test('It camelCases keys in nested array of objects', () => {
-		expect(camelCaseKeys(input.nested_object_array)).toEqual({
+		expect(mapKeys(input.nested_object_array, _.camelCase)).toEqual({
 			top: [
 				{
 					nestedKeyOne: [
@@ -109,7 +110,7 @@ describe('Object keys should be correctly camelCased', () => {
 	});
 
 	test('It handles all cases', () => {
-		expect(camelCaseKeys(input)).toEqual({
+		expect(mapKeys(input, _.camelCase)).toEqual({
 			topLevel: {
 				keyOne: 'value',
 				keyTwo: 'value',
