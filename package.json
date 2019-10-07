@@ -30,6 +30,7 @@
     "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-prettier": "^3.1.1",
     "jest-json-schema": "^2.1.0",
+    "jsdoc-to-markdown": "^5.0.1",
     "prettier": "^1.18.2"
   },
   "dependencies": {
