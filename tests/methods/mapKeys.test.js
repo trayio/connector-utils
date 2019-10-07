@@ -62,10 +62,10 @@ describe('Object keys should be correctly camelCased', () => {
 	});
 
 	test('It camelCases nested keys', () => {
-		expect(mapKeys(input.nested_keys, _.camelCase)).toEqual({
+		expect(mapKeys(input.nested_keys, _.kebabCase)).toEqual({
 			top: {
-				nestedKeyOne: 'value',
-				nestedKeyTwo: number,
+				'nested-key-one': 'value',
+				'nested-key-two': number,
 			},
 		});
 	});
