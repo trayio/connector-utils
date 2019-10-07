@@ -43,7 +43,7 @@ and a counter keep track of how many levels of the nested structure iterated thr
 <a name="UserInputError"></a>
 
 ## UserInputError
-**Kind**: global class  
+**Kind**: custom error class  
 <a name="new_UserInputError_new"></a>
 
 ### new UserInputError(message, [code], ...params)
@@ -59,7 +59,7 @@ Custom error to throw for issues concerning User Input.
 <a name="ConnectorError"></a>
 
 ## ConnectorError
-**Kind**: global class  
+**Kind**: custom error class  
 <a name="new_ConnectorError_new"></a>
 
 ### new ConnectorError(message, [code], ...params)
