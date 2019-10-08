@@ -48,14 +48,23 @@ describe('Should throw a the correct error where appropriate', () => {
 		}).toThrow(customMessage);
 	});
 	test('It should include the correct error name in the stack trace.', () => {
+		const errors = [
+			UserInputError,
+			ConnectorError,
+			ApiError,
+			OAuthRefresh,
+			NoTriggerError,
+		];
 		const generateError = errorType => {
 			throw new errorType(customMessage);
 		};
-		try {
-			generateError(UserInputError);
-		} catch (e) {
-			expect(e.name).toBe('UserInputError');
-		}
+		errors.forEach(err => {
+			try {
+				generateError(err);
+			} catch (e) {
+				expect(e.name).toBe(err.name);
+			}
+		});
 	});
 	test('It should include a body if one is passed', () => {
 		expect(() => {
