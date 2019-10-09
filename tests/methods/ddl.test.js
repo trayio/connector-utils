@@ -36,7 +36,7 @@ describe('Tests covering the standard DDL method', () => {
 
 	test('It should throw an error if the text path does not exist', () => {
 		expect(() => standard(obj.data, 'some_path.first_name', 'id')).toThrow(
-			"Path Not Found: Path at 'some_path.first_name' could not be found in the output object.",
+			"Path Not Found: Path at 'some_path.first_name' could not be found in the object.",
 		);
 	});
 
@@ -44,7 +44,7 @@ describe('Tests covering the standard DDL method', () => {
 		expect(() =>
 			standard(obj.data, 'attributes.first_name', 'some_path.id'),
 		).toThrow(
-			"Path Not Found: Path at 'some_path.id' could not be found in the output object.",
+			"Path Not Found: Path at 'some_path.id' could not be found in the object.",
 		);
 	});
 });
@@ -92,7 +92,7 @@ describe('Tests covering the mustached DDL method', () => {
 		expect(() =>
 			mustached(obj.data, '{{some_path.first_name}}', '{{id}}'),
 		).toThrow(
-			"Path Not Found: Path at '{{some_path.first_name}}' could not be found in the output object.",
+			"Path Not Found: Path at '{{some_path.first_name}}' could not be found in the object.",
 		);
 	});
 
@@ -104,7 +104,7 @@ describe('Tests covering the mustached DDL method', () => {
 				'{{some_path.id}}',
 			),
 		).toThrow(
-			"Path Not Found: Path at '{{some_path.id}}' could not be found in the output object.",
+			"Path Not Found: Path at '{{some_path.id}}' could not be found in the object.",
 		);
 	});
 
@@ -117,7 +117,7 @@ describe('Tests covering the mustached DDL method', () => {
 				true,
 			),
 		).toThrow(
-			"Path Not Found: Path at 'some_path.id' could not be found in the output object.",
+			"Path Not Found: Path at 'some_path.id' could not be found in the object.",
 		);
 	});
 });
