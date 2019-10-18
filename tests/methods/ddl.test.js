@@ -47,7 +47,18 @@ describe('Tests covering the standard DDL method', () => {
 			"Path Not Found: Path at 'some_path.id' could not be found in the object.",
 		);
 	});
+
+	test('It should throw an error if the object passed is not an array', () => {
+		expect(() =>
+			mustached(
+				{ data: 'someData' },
+				'attributes.first_name',
+				'some_path.id',
+			),
+		).toThrow('The DDL operation requires an array to be passed.');
+	});
 });
+
 describe('Tests covering the mustached DDL method', () => {
 	test('It should correctly get text & value based on mustached values', () => {
 		expect(
@@ -71,7 +82,7 @@ describe('Tests covering the mustached DDL method', () => {
 			mustached(
 				obj.data,
 				'{{attributes.first_name}} {{attributes.last_name}}',
-				'id',
+				'{{id}}',
 				true,
 			),
 		).toEqual({
@@ -113,11 +124,21 @@ describe('Tests covering the mustached DDL method', () => {
 			mustached(
 				obj.data,
 				'{{attributes.first_name}}',
-				'some_path.id',
+				'{{some_path.id}}',
 				true,
 			),
 		).toThrow(
-			"Path Not Found: Path at 'some_path.id' could not be found in the object.",
+			"Path Not Found: Path at '{{some_path.id}}' could not be found in the object.",
 		);
+	});
+
+	test('It should throw an error if the object passed is not an array', () => {
+		expect(() =>
+			mustached(
+				{ data: 'someData' },
+				'{{attributes.first_name}}',
+				'{{some_path.id}}',
+			),
+		).toThrow('The DDL operation requires an array to be passed.');
 	});
 });

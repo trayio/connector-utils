@@ -2,7 +2,7 @@
   "name": "@trayio/falafel-utils",
   "version": "0.0.1",
   "description": "Common utility functions used in connectors.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest tests"
   },
