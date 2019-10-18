@@ -44,10 +44,14 @@ describe('Helper should remove all empty objects from the payload', () => {
 					},
 				},
 				key3: 'someval',
+				key4: true,
+				key5: 5,
 			}),
 		).toEqual({
 			key1: 'value',
 			key3: 'someval',
+			key4: true,
+			key5: 5,
 		});
 	});
 

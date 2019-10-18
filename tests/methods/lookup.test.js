@@ -33,4 +33,22 @@ describe('Lookup objects should be correctly outputted', () => {
 			},
 		});
 	});
+
+	test('It should throw an error if the message is null', () => {
+		expect(() => lookup(null)).toThrow(
+			`The lookup 'message' cannot be null or empty.`,
+		);
+	});
+
+	test('It should throw an error if the message is empty', () => {
+		expect(() => lookup('')).toThrow(
+			`The lookup 'message' cannot be null or empty.`,
+		);
+	});
+
+	test('It should throw an error if the message is not a String type', () => {
+		expect(() => lookup(100)).toThrow(
+			`The lookup 'message' must be a String type.`,
+		);
+	});
 });
