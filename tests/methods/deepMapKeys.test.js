@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const deepMapKeys = require('../../lib/deepMapKeys');
+const { deepMapKeys } = require('../../lib/index').deepMap;
 const number = 10;
 const input = {
 	top_level: {

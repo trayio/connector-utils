@@ -4,7 +4,7 @@ const {
 	ApiError,
 	OAuthRefresh,
 	NoTriggerError,
-} = require('../../lib/errors');
+} = require('../../lib/index').error;
 
 const customMessage = 'custom error message';
 const body = {

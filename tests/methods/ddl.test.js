@@ -1,4 +1,4 @@
-const { mustached, standard } = require('../../lib/ddl');
+const { mustachedDDL, standardDDL } = require('../../lib/index').schema;
 
 const obj = {
 	data: [
@@ -18,9 +18,9 @@ const obj = {
 		},
 	],
 };
-describe('Tests covering the standard DDL method', () => {
+describe('Tests covering the standardDDL DDL method', () => {
 	test('It should correctly get text & value based paths passed in', () => {
-		expect(standard(obj.data, 'attributes.first_name', 'id')).toEqual({
+		expect(standardDDL(obj.data, 'attributes.first_name', 'id')).toEqual({
 			result: [
 				{
 					text: 'Ryan',
@@ -35,14 +35,16 @@ describe('Tests covering the standard DDL method', () => {
 	});
 
 	test('It should throw an error if the text path does not exist', () => {
-		expect(() => standard(obj.data, 'some_path.first_name', 'id')).toThrow(
+		expect(() =>
+			standardDDL(obj.data, 'some_path.first_name', 'id'),
+		).toThrow(
 			"Path Not Found: Path at 'some_path.first_name' could not be found in the object.",
 		);
 	});
 
 	test('It should throw an error if the value path does not exist', () => {
 		expect(() =>
-			standard(obj.data, 'attributes.first_name', 'some_path.id'),
+			standardDDL(obj.data, 'attributes.first_name', 'some_path.id'),
 		).toThrow(
 			"Path Not Found: Path at 'some_path.id' could not be found in the object.",
 		);
@@ -50,7 +52,7 @@ describe('Tests covering the standard DDL method', () => {
 
 	test('It should throw an error if the object passed is not an array', () => {
 		expect(() =>
-			mustached(
+			mustachedDDL(
 				{ data: 'someData' },
 				'attributes.first_name',
 				'some_path.id',
@@ -62,7 +64,7 @@ describe('Tests covering the standard DDL method', () => {
 describe('Tests covering the mustached DDL method', () => {
 	test('It should correctly get text & value based on mustached values', () => {
 		expect(
-			mustached(obj.data, '{{attributes.first_name}}', '{{id}}'),
+			mustachedDDL(obj.data, '{{attributes.first_name}}', '{{id}}'),
 		).toEqual({
 			result: [
 				{
@@ -79,7 +81,7 @@ describe('Tests covering the mustached DDL method', () => {
 
 	test('It should correctly get IDs as integer if set to true', () => {
 		expect(
-			mustached(
+			mustachedDDL(
 				obj.data,
 				'{{attributes.first_name}} {{attributes.last_name}}',
 				'{{id}}',
@@ -101,7 +103,7 @@ describe('Tests covering the mustached DDL method', () => {
 
 	test('It should throw an error if the text path does not exist', () => {
 		expect(() =>
-			mustached(obj.data, '{{some_path.first_name}}', '{{id}}'),
+			mustachedDDL(obj.data, '{{some_path.first_name}}', '{{id}}'),
 		).toThrow(
 			"Path Not Found: Path at '{{some_path.first_name}}' could not be found in the object.",
 		);
@@ -109,7 +111,7 @@ describe('Tests covering the mustached DDL method', () => {
 
 	test('It should throw an error if the value path is not specified as an int and does not exist', () => {
 		expect(() =>
-			mustached(
+			mustachedDDL(
 				obj.data,
 				'{{attributes.first_name}}',
 				'{{some_path.id}}',
@@ -121,7 +123,7 @@ describe('Tests covering the mustached DDL method', () => {
 
 	test('It should throw an error if the value path is specified as an int and does not exist', () => {
 		expect(() =>
-			mustached(
+			mustachedDDL(
 				obj.data,
 				'{{attributes.first_name}}',
 				'{{some_path.id}}',
@@ -134,7 +136,7 @@ describe('Tests covering the mustached DDL method', () => {
 
 	test('It should throw an error if the object passed is not an array', () => {
 		expect(() =>
-			mustached(
+			mustachedDDL(
 				{ data: 'someData' },
 				'{{attributes.first_name}}',
 				'{{some_path.id}}',
