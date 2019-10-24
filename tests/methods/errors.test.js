@@ -14,6 +14,8 @@ const generateError = errorType => {
 	throw new errorType(customMessage);
 };
 
+// TODO: update test to check for body
+
 // * User Input Error
 
 describe('Should throw a User Input Error where appropriate', () => {
