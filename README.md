@@ -1,6 +1,12 @@
 # Connector-utils
 Common utility functions used in connectors.
 
+## Usage
+
+TODO: add usage guide
+
+# Documentation
+
 ## Classes
 
 <dl>
