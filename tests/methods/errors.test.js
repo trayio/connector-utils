@@ -6,15 +6,11 @@ const {
 	NoTriggerError,
 } = require('../../lib/index').error;
 
+const fileName = 'testing_doc.csv';
 const customMessage = 'custom error message';
-const body = {
-	key: 'some info',
-};
 const generateError = errorType => {
 	throw new errorType(customMessage);
 };
-
-// TODO: update test to check for body
 
 // * User Input Error
 
@@ -37,10 +33,10 @@ describe('Should throw a User Input Error where appropriate', () => {
 			expect(e.name).toBe(UserInputError.name);
 		}
 	});
-	test('It should include a body if one is passed', () => {
+	test('It should include a file name as part of the error args if one is passed', () => {
 		expect(() => {
-			throw new UserInputError(customMessage, body);
-		}).toThrow(customMessage, body);
+			throw new UserInputError(customMessage, fileName);
+		}).toThrow(customMessage, fileName);
 	});
 });
 
@@ -67,8 +63,8 @@ describe('Should throw a Connector Error where appropriate', () => {
 	});
 	test('It should include a body if one is passed', () => {
 		expect(() => {
-			throw new ConnectorError(customMessage, body);
-		}).toThrow(customMessage, body);
+			throw new ConnectorError(customMessage, fileName);
+		}).toThrow(customMessage, fileName);
 	});
 });
 
@@ -95,8 +91,8 @@ describe('Should throw an API Error where appropriate', () => {
 	});
 	test('It should include a body if one is passed', () => {
 		expect(() => {
-			throw new ApiError(customMessage, body);
-		}).toThrow(customMessage, body);
+			throw new ApiError(customMessage, fileName);
+		}).toThrow(customMessage, fileName);
 	});
 });
 
@@ -123,8 +119,8 @@ describe('Should throw an oAuth Refresh Error where appropriate', () => {
 	});
 	test('It should include a body if one is passed', () => {
 		expect(() => {
-			throw new OAuthRefresh(customMessage, body);
-		}).toThrow(customMessage, body);
+			throw new OAuthRefresh(customMessage, fileName);
+		}).toThrow(customMessage, fileName);
 	});
 });
 
@@ -151,7 +147,7 @@ describe('Should throw a No Trigger Error where appropriate', () => {
 	});
 	test('It should include a body if one is passed', () => {
 		expect(() => {
-			throw new NoTriggerError(customMessage, body);
-		}).toThrow(customMessage, body);
+			throw new NoTriggerError(customMessage, fileName);
+		}).toThrow(customMessage, fileName);
 	});
 });
