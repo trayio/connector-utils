@@ -49,8 +49,10 @@ const input = {
 };
 
 describe('Object keys should be correctly camelCased', () => {
-	test('It should just return the parameter if no object is passed', () => {
-		expect(deepMapKeys('Some value')).toEqual('Some value');
+	test('It will throw an error if iteratee is not a function.', () => {
+		expect(() => deepMapKeys(input.nested_keys, 'camelCase')).toThrow(
+			'The iteratee must be a function.',
+		);
 	});
 
 	test('It camelCases top level keys', () => {
