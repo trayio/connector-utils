@@ -63,7 +63,7 @@ describe('Object keys should be correctly camelCased', () => {
 		});
 	});
 
-	test('It camelCases nested keys', () => {
+	test('It kebab-cases nested keys, when _.kebabCase is passed as iteratee', () => {
 		expect(deepMapKeys(input.nested_keys, _.kebabCase)).toEqual({
 			top: {
 				'nested-key-one': 'value',

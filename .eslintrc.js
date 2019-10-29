@@ -5,6 +5,9 @@ module.exports = {
 	},
 	globals: {
 		_: true,
+		when: true,
+		mout: true,
+		falafel: true,
 	},
 	plugins: [
 		"jest"
@@ -17,6 +20,8 @@ module.exports = {
 	rules: {
 		'prettier/prettier': 'error',
 		"no-console": 1,
-		'no-unused-vars': ["error", { "args": "none" }]
+		'no-unused-vars': ["error", { "args": "none" }],
+		"prefer-template": 'error',
+		"curly": 'error'
 	}
 }
