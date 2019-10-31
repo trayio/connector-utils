@@ -34,15 +34,7 @@ describe('Tests should correctly throw DDL errors', () => {
 			throw new DDLError('Custom error', customObj);
 		} catch (e) {
 			expect(e.message).toEqual('Custom error');
-			expect(e.data).toEqual({
-				message: 'Custom error',
-				context: customObj,
-			});
+			expect(e.context).toEqual(customObj);
 		}
-		// try {
-		// 	err();
-		// } catch (e) {
-		// 	expect(e.context).toBe(customObj);
-		// }
 	});
 });

@@ -19,17 +19,7 @@ const obj = {
 		},
 	],
 };
-const errorObject = {
-	errorMessage:
-		"Path Not Found: Path at '{{some_path.first_name}}' could not be found in the object.",
-	context: {
-		attributes: {
-			first_name: 'Ryan',
-			last_name: 'Barker',
-		},
-		id: 50,
-	},
-};
+
 describe('Tests covering the standardDDL DDL method', () => {
 	test('It should correctly get text & value based paths passed in', () => {
 		expect(standardDDL(obj.data, 'attributes.first_name', 'id')).toEqual({
@@ -114,20 +104,9 @@ describe('Tests covering the mustached DDL method', () => {
 	});
 
 	test('It should throw an error if the text path does not exist', () => {
-		try {
-			mustachedDDL(obj.data, '{{some_path.first_name}}', '{{id}}');
-		} catch (e) {
-			expect(e.data).toEqual({
-				message: `Path Not Found: Path at '{{some_path.first_name}}' could not be found in the object.`,
-				context: {
-					attributes: { first_name: 'Ryan', last_name: 'Barker' },
-					id: 50,
-				},
-			});
-		}
-		// expect(() =>
-		// 	mustachedDDL(obj.data, '{{some_path.first_name}}', '{{id}}'),
-		// ).toThrow();
+		expect(() =>
+			mustachedDDL(obj.data, '{{some_path.first_name}}', '{{id}}'),
+		).toThrow(DDLError);
 	});
 
 	test('It should throw an error if the value path is not specified as an int and does not exist', () => {
