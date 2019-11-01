@@ -38,7 +38,7 @@ TODO: add usage guide
 A custom flag is in place to allow for keeping integer types for the value key
 if required, as mustaching will convert an integer to string.</p>
 </dd>
-<dt><a href="#standardDDL">standardDDL(object, textPath, valuePath)</a></dt>
+<dt><a href="#DDL">DDL(object, textPath, valuePath)</a></dt>
 <dd><p>Takes value paths as explicit strings and returns correct DDL outputs.</p>
 </dd>
 <dt><a href="#deepMapKeys">deepMapKeys(collection, iteratee)</a></dt>
@@ -185,12 +185,12 @@ if required, as mustaching will convert an integer to string.
 | --- | --- | --- | --- |
 | object | <code>Object</code> |  | The collection with keys to iterate over and format. |
 | text | <code>String</code> |  | The path for the required text value. |
-| value | <code>String</code> |  | The path fot the required value, value. |
+| value | <code>String</code> |  | The path for the required value, value. |
 | isInteger | <code>Boolean</code> | <code>false</code> | Flag for whether or not the value field needs to an integer rather than a string. |
 
-<a name="standardDDL"></a>
+<a name="DDL"></a>
 
-## standardDDL(object, textPath, valuePath)
+## DDL(object, textPath, valuePath)
 Takes value paths as explicit strings and returns correct DDL outputs.
 
 **Kind**: global function  
