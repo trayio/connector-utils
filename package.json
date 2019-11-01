@@ -1,5 +1,5 @@
 {
-  "name": "@trayio/falafel-utils",
+  "name": "@trayio/connector-utils",
   "version": "0.0.1",
   "description": "Common utility functions used in connectors.",
   "main": "lib/index.js",
@@ -21,9 +21,9 @@
   "author": "tray.io",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/trayio/falafel-utils/issues"
+    "url": "https://github.com/trayio/connector-utils/issues"
   },
-  "homepage": "https://github.com/trayio/falafel-utils#readme",
+  "homepage": "https://github.com/trayio/connector-utils#readme",
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.3.0",
