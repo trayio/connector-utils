@@ -211,7 +211,7 @@ Maps object keys and formats according to specified casing.
 | Param | Type | Description |
 | --- | --- | --- |
 | collection | <code>Object</code> | The collection with keys to iterate over and format. |
-| iteratee | <code>function</code> | The format function used to format keys IE _.camelCase(). |
+| iteratee | <code>function</code> | The format function used to format keys IE [Lodash](https://lodash.com/docs/4.17.15#camelCase) _.camelCase('some_string'). |
 
 <a name="userInputErrorRejection"></a>
 
