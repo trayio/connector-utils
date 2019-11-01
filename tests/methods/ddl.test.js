@@ -1,4 +1,4 @@
-const { mustachedDDL, standardDDL } = require('../../lib/index').schema;
+const { mustachedDDL, DDL } = require('../../lib/index').schema;
 const { DDLError } = require('../../lib/internal/errors');
 
 const obj = {
@@ -20,9 +20,9 @@ const obj = {
 	],
 };
 
-describe('Tests covering the standardDDL DDL method', () => {
+describe('Tests covering the DDL DDL method', () => {
 	test('It should correctly get text & value based paths passed in', () => {
-		expect(standardDDL(obj.data, 'attributes.first_name', 'id')).toEqual({
+		expect(DDL(obj.data, 'attributes.first_name', 'id')).toEqual({
 			result: [
 				{
 					text: 'Ryan',
@@ -37,16 +37,14 @@ describe('Tests covering the standardDDL DDL method', () => {
 	});
 
 	test('It should throw an error if the text path does not exist', () => {
-		expect(() =>
-			standardDDL(obj.data, 'some_path.first_name', 'id'),
-		).toThrow(
+		expect(() => DDL(obj.data, 'some_path.first_name', 'id')).toThrow(
 			"Path Not Found: Path at 'some_path.first_name' could not be found in the object.",
 		);
 	});
 
 	test('It should throw an error if the value path does not exist', () => {
 		expect(() =>
-			standardDDL(obj.data, 'attributes.first_name', 'some_path.id'),
+			DDL(obj.data, 'attributes.first_name', 'some_path.id'),
 		).toThrow(
 			"Path Not Found: Path at 'some_path.id' could not be found in the object.",
 		);

@@ -14,68 +14,85 @@ const customErrorBody = {
 };
 
 describe('Tests should correctly throw a User Input Error with a body', () => {
-	test('It should throw a custom error with a custom body', () => {
-		expect(() => {
-			throw userInputErrorRejection(customErrorMessage, customErrorBody);
-		}).toThrow({
-			code: '#user_input_error',
-			message: customErrorMessage,
-			body: customErrorBody,
-		});
+	test('It should throw a custom error with a custom body', async () => {
+		try {
+			return await userInputErrorRejection(
+				customErrorMessage,
+				customErrorBody,
+			);
+		} catch (e) {
+			expect(e).toEqual({
+				code: '#user_input_error',
+				message: customErrorMessage,
+				body: customErrorBody,
+			});
+		}
 	});
 
 	test('It should throw an error if a body is not passed', () => {
 		expect(() => {
-			throw userInputErrorRejection(customErrorMessage);
+			return userInputErrorRejection(customErrorMessage);
 		}).toThrow(missingBodyError);
 	});
 });
 
 describe('Tests should correctly throw a Connector Error with a body', () => {
-	test('It should throw a custom error with a custom body', () => {
-		expect(() => {
-			throw connectorErrorRejection(customErrorMessage, customErrorBody);
-		}).toThrow({
-			code: '#connector_error',
-			message: customErrorMessage,
-			body: customErrorBody,
-		});
+	test('It should throw a custom error with a custom body', async () => {
+		try {
+			return await connectorErrorRejection(
+				customErrorMessage,
+				customErrorBody,
+			);
+		} catch (e) {
+			expect(e).toEqual({
+				code: '#connector_error',
+				message: customErrorMessage,
+				body: customErrorBody,
+			});
+		}
 	});
 
 	test('It should throw an error if a body is not passed', () => {
 		expect(() => {
-			throw connectorErrorRejection(customErrorMessage);
+			return connectorErrorRejection(customErrorMessage);
 		}).toThrow(missingBodyError);
 	});
 });
 
 describe('Tests should correctly throw an API error with a body', () => {
-	test('It should throw a custom error with a custom body', () => {
-		expect(() => {
-			throw apiErrorRejection(customErrorMessage, customErrorBody);
-		}).toThrow({
-			code: '#api_error',
-			message: customErrorMessage,
-			body: customErrorBody,
-		});
+	test('It should throw a custom error with a custom body', async () => {
+		try {
+			return await apiErrorRejection(customErrorMessage, customErrorBody);
+		} catch (e) {
+			expect(e).toEqual({
+				code: '#api_error',
+				message: customErrorMessage,
+				body: customErrorBody,
+			});
+		}
 	});
 
 	test('It should throw an error if a body is not passed', () => {
 		expect(() => {
-			throw apiErrorRejection(customErrorMessage);
+			return apiErrorRejection(customErrorMessage);
 		}).toThrow(missingBodyError);
 	});
 });
 
 describe('Tests should correctly throw an oAuth Refresh Error with a body', () => {
-	test('It should throw a custom error with a custom body', () => {
-		expect(() => {
-			throw oauthErrorRejection(customErrorMessage, customErrorBody);
-		}).toThrow({
-			code: '#oauth_refresh',
-			message: customErrorMessage,
-			body: customErrorBody,
-		});
+	test('It should throw a custom error with a custom body', async () => {
+		try {
+			return await oauthErrorRejection(
+				customErrorMessage,
+				customErrorBody,
+			);
+		} catch (e) {
+			expect(e).toEqual({
+				code: '#oauth_refresh',
+				message: customErrorMessage,
+				body: customErrorBody,
+			});
+		}
 	});
 
 	test('It should throw an error if a body is not passed', () => {
@@ -86,14 +103,19 @@ describe('Tests should correctly throw an oAuth Refresh Error with a body', () =
 });
 
 describe('Tests should correctly throw an No Trigger Error with a body', () => {
-	test('It should throw a custom error with a custom body', () => {
-		expect(() => {
-			throw noTriggerErrorRejection(customErrorMessage, customErrorBody);
-		}).toThrow({
-			code: '#no_trigger_error',
-			message: customErrorMessage,
-			body: customErrorBody,
-		});
+	test('It should throw a custom error with a custom body', async () => {
+		try {
+			return await noTriggerErrorRejection(
+				customErrorMessage,
+				customErrorBody,
+			);
+		} catch (e) {
+			expect(e).toEqual({
+				code: '#no_trigger',
+				message: customErrorMessage,
+				body: customErrorBody,
+			});
+		}
 	});
 
 	test('It should throw an error if a body is not passed', () => {
