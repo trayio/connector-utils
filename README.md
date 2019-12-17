@@ -1,9 +1,35 @@
 # Connector-utils
 Common utility functions used in connectors.
 
-## Usage
+## Installation
 
-TODO: add usage guide
+The `connector-utils` package will be inherently included as part of a new connector scaffold. 
+
+When adding the package as part of an existing connector, first ensure you have the appropriate `.npmrc` present, then run 
+```
+npm i @trayio/connector-utils --save
+```
+
+## Basic Usage 
+
+To require the package, require as `@trayio/connector-utils`:
+```
+const utils = require('@trayio/connector-utils')
+``` 
+This will give full access to the library. We can then reference utilities such as `UserInputError` by using:
+```
+utils.error.UserInputError('custom error message')
+```
+
+A better usage alternative is to use destructuring, as in the example:
+```
+const { UserInputError } = require('@trayio/connector-utils').error
+```
+
+A full breakdown of available utilities is included in the documentation below.
+
+Please be sure to add any discovered issues or improvement recommendations to the `Issues` tab of the repo.
+
 
 # Documentation
 
