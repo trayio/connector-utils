@@ -3,9 +3,9 @@ Common utility functions used in connectors.
 
 ## Installation
 
-The `connector-utils` package will be inherently included as part of a new connector scaffold. 
+The `connector-utils` package will be inherently included as part of a new connector scaffold (as part of the Trayio yeoman generator). 
 
-When adding the package as part of an existing connector, first ensure you have the appropriate `.npmrc` present, then run 
+When adding the package as part of an existing connector, first ensure you have the appropriate `.npmrc` present, then in your terminal, run: 
 ```
 npm i @trayio/connector-utils --save
 ```
@@ -23,12 +23,12 @@ utils.error.UserInputError('custom error message')
 
 A better usage alternative is to use destructuring, as in the example:
 ```
-const { UserInputError } = require('@trayio/connector-utils').error
+const { UserInputError } = require('@trayio/connector-utils/error')
 ```
 
 A full breakdown of available utilities is included in the documentation below.
 
-Please be sure to add any discovered issues or improvement recommendations to the `Issues` tab of the repo.
+Please be sure to add any discovered issues or improvement recommendations to the `Issues` tab of this repo.
 
 
 # Documentation
