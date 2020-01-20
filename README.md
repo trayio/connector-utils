@@ -23,7 +23,7 @@ utils.error.UserInputError('custom error message')
 
 A better usage alternative is to use destructuring, as in the example:
 ```
-const { UserInputError } = require('@trayio/connector-utils/lib/error')
+const { UserInputError } = require('@trayio/connector-utils/lib/errors')
 ```
 
 A full breakdown of available utilities is included in the documentation below.
