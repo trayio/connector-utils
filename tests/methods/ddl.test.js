@@ -1,4 +1,4 @@
-const { mustachedDDL, DDL } = require('../../lib/index').schema;
+const { mustachedDDL, DDL } = require('../../lib/index');
 const { DDLError } = require('../../lib/internal/errors');
 
 const obj = {
