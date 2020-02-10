@@ -1,4 +1,4 @@
-const { removeEmptyObjects } = require('../../lib/index').deepMap;
+const { removeEmptyObjects } = require('../../lib/index');
 
 describe('Helper should remove all empty objects from the payload', () => {
 	test('It removes empty objects and strings from top level of object', () => {
