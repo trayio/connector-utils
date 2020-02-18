@@ -72,4 +72,34 @@ describe('Pagination should be correctly validated', () => {
 			),
 		).toThrow('Arguments need to be integer types.');
 	});
+	test('Error should be thrown when pageSize is negative', () => {
+		const NEGATIVE_PAGE_SIZE = -1;
+		expect(() =>
+			validatePaginationRange(
+				NEGATIVE_PAGE_SIZE,
+				MIN_PAGE_SIZE,
+				MAX_PAGE_SIZE,
+			),
+		).toThrow('Arguments must not be a negative value (less than 0).');
+	});
+	test('Error should be thrown when minPageSize is negative', () => {
+		const NEGATIVE_MIN_PAGE_SIZE = -1;
+		expect(() =>
+			validatePaginationRange(
+				PAGE_SIZE,
+				NEGATIVE_MIN_PAGE_SIZE,
+				MAX_PAGE_SIZE,
+			),
+		).toThrow('Arguments must not be a negative value (less than 0).');
+	});
+	test('Error should be thrown when maxPageSize is negative', () => {
+		const NEGATIVE_MAX_PAGE_SIZE = -1;
+		expect(() =>
+			validatePaginationRange(
+				PAGE_SIZE,
+				MIN_PAGE_SIZE,
+				NEGATIVE_MAX_PAGE_SIZE,
+			),
+		).toThrow('Arguments must not be a negative value (less than 0).');
+	});
 });
