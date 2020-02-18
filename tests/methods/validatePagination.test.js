@@ -60,7 +60,7 @@ describe('Pagination should be correctly validated', () => {
 			),
 		).toThrow('Arguments must not be a negative value (less than 0).');
 	});
-	describe('Methods should not discriminate against types (strings/ints)', () => {
+	describe('Method should not discriminate against types (strings/ints)', () => {
 		const STRING_PAGE_SIZE = '50';
 		const STRING_MIN_PAGE_SIZE = '1';
 		const STRING_MAX_PAGE_SIZE = '100';
