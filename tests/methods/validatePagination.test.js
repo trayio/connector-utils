@@ -1,4 +1,4 @@
-const { validatePagination } = require('../../lib/index');
+const { validatePagination } = require('../../');
 
 const PAGE_SIZE = 50;
 const MIN_PAGE_SIZE = 1;
@@ -14,13 +14,13 @@ describe('Pagination should be correctly validated', () => {
 		const LARGE_PAGE_SIZE = 101;
 		expect(() =>
 			validatePagination(LARGE_PAGE_SIZE, MIN_PAGE_SIZE, MAX_PAGE_SIZE),
-		).toThrow('The Page size must be between 1 - 100.');
+		).toThrow('The page size must be between 1 - 100.');
 	});
 	test('Error should be thrown if the pageSize is smaller than required range', () => {
 		const SMALL_PAGE_SIZE = 0;
 		expect(() =>
 			validatePagination(SMALL_PAGE_SIZE, MIN_PAGE_SIZE, MAX_PAGE_SIZE),
-		).toThrow('The Page size must be between 1 - 100.');
+		).toThrow('The page size must be between 1 - 100.');
 	});
 	test('Error should be thrown when pageSize is not an integer', () => {
 		const STRING_PAGE_SIZE = '50';
