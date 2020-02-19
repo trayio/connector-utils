@@ -3,31 +3,32 @@ const { validatePaginationRange } = require('../../');
 const PAGE_SIZE = 50;
 const MIN_PAGE_SIZE = 1;
 const MAX_PAGE_SIZE = 100;
+const INPUT_NAME = 'page size';
 
 describe('Pagination should be correctly validated', () => {
 	test('No error should be thrown if pageSize is within range.', () => {
 		expect(
 			validatePaginationRange(PAGE_SIZE, MIN_PAGE_SIZE, MAX_PAGE_SIZE),
-		).toBe(undefined);
+		).toBeUndefined();
 	});
 	test('Error should be thrown if the pageSize is larger than required range.', () => {
 		const LARGE_PAGE_SIZE = 101;
 		expect(() =>
-			validatePaginationRange(
-				LARGE_PAGE_SIZE,
-				MIN_PAGE_SIZE,
-				MAX_PAGE_SIZE,
-			),
+			validatePaginationRange(LARGE_PAGE_SIZE, {
+				minRange: MIN_PAGE_SIZE,
+				maxRange: MAX_PAGE_SIZE,
+				inputName: INPUT_NAME,
+			}),
 		).toThrow('The page size must be between 1 - 100.');
 	});
 	test('Error should be thrown if the pageSize is smaller than required range', () => {
 		const SMALL_PAGE_SIZE = 0;
 		expect(() =>
-			validatePaginationRange(
-				SMALL_PAGE_SIZE,
-				MIN_PAGE_SIZE,
-				MAX_PAGE_SIZE,
-			),
+			validatePaginationRange(SMALL_PAGE_SIZE, {
+				minRange: MIN_PAGE_SIZE,
+				maxRange: MAX_PAGE_SIZE,
+				inputName: INPUT_NAME,
+			}),
 		).toThrow('The page size must be between 1 - 100.');
 	});
 	test('Error should be thrown when pageSize is negative', () => {
