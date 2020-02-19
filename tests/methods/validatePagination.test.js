@@ -34,11 +34,11 @@ describe('Pagination should be correctly validated', () => {
 	test('Error should be thrown when pageSize is negative', () => {
 		const NEGATIVE_PAGE_SIZE = -1;
 		expect(() =>
-			validatePaginationRange(
-				NEGATIVE_PAGE_SIZE,
-				MIN_PAGE_SIZE,
-				MAX_PAGE_SIZE,
-			),
+			validatePaginationRange(NEGATIVE_PAGE_SIZE, {
+				minRange: MIN_PAGE_SIZE,
+				maxRange: MAX_PAGE_SIZE,
+				inputName: INPUT_NAME,
+			}),
 		).toThrow('Arguments must not be a negative value (less than 0).');
 	});
 	test('Error should be thrown when minPageSize is negative', () => {
