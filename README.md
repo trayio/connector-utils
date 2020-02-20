@@ -98,7 +98,7 @@ It&#39;s important to note that this method will remove objects if they become e
 as a result of the nested key/value containing an empty object (the same goes
 for arrays).</p>
 </dd>
-<dt><a href="#validatePaginationRange">validatePaginationRange(value, minRange, maxRange, inputName)</a></dt>
+<dt><a href="#validatePaginationRange">validatePaginationRange(value, validation)</a></dt>
 <dd><p>Helper for validating user pagination input for a given range.</p>
 </dd>
 </dl>
@@ -334,7 +334,7 @@ for arrays).
 
 <a name="validatePaginationRange"></a>
 
-## validatePaginationRange(value, minRange, maxRange, inputName)
+## validatePaginationRange(value, validation)
 Helper for validating user pagination input for a given range.
 
 **Kind**: global function  
@@ -342,9 +342,10 @@ Helper for validating user pagination input for a given range.
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>Integer</code> \| <code>String</code> | The value specified by user input. |
-| minRange | <code>Integer</code> \| <code>String</code> | The minimum range specified by the API. |
-| maxRange | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API. |
-| inputName | <code>String</code> | The name of the input the range is associated with. |
+| validation | <code>Object</code> | Values relating specifically to the validation requirements. |
+| validation.minRange | <code>Integer</code> \| <code>String</code> | The minimum range specified by the API. |
+| validation.maxRange | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API. |
+| validation.inputName | <code>String</code> | The name of the input the range is associated with. |
 
 **Example**  
 ```js
