@@ -8,7 +8,11 @@ const INPUT_NAME = 'page size';
 describe('Pagination should be correctly validated', () => {
 	test('No error should be thrown if pageSize is within range.', () => {
 		expect(
-			validatePaginationRange(PAGE_SIZE, MIN_PAGE_SIZE, MAX_PAGE_SIZE),
+			validatePaginationRange(PAGE_SIZE, {
+				minRange: MIN_PAGE_SIZE,
+				maxRange: MAX_PAGE_SIZE,
+				inputName: INPUT_NAME,
+			}),
 		).toBeUndefined();
 	});
 	test('Error should be thrown if the pageSize is larger than required range.', () => {
@@ -44,21 +48,21 @@ describe('Pagination should be correctly validated', () => {
 	test('Error should be thrown when minPageSize is negative', () => {
 		const NEGATIVE_MIN_PAGE_SIZE = -1;
 		expect(() =>
-			validatePaginationRange(
-				PAGE_SIZE,
-				NEGATIVE_MIN_PAGE_SIZE,
-				MAX_PAGE_SIZE,
-			),
+			validatePaginationRange(PAGE_SIZE, {
+				minRange: NEGATIVE_MIN_PAGE_SIZE,
+				maxRange: MAX_PAGE_SIZE,
+				inputName: INPUT_NAME,
+			}),
 		).toThrow('Arguments must not be a negative value (less than 0).');
 	});
 	test('Error should be thrown when maxPageSize is negative', () => {
 		const NEGATIVE_MAX_PAGE_SIZE = -1;
 		expect(() =>
-			validatePaginationRange(
-				PAGE_SIZE,
-				MIN_PAGE_SIZE,
-				NEGATIVE_MAX_PAGE_SIZE,
-			),
+			validatePaginationRange(PAGE_SIZE, {
+				minRange: MIN_PAGE_SIZE,
+				maxRange: NEGATIVE_MAX_PAGE_SIZE,
+				inputName: INPUT_NAME,
+			}),
 		).toThrow('Arguments must not be a negative value (less than 0).');
 	});
 	describe('Method should not discriminate against types (strings/ints)', () => {
@@ -68,39 +72,39 @@ describe('Pagination should be correctly validated', () => {
 
 		test('Should not return an error if pageSize is a string', () => {
 			expect(
-				validatePaginationRange(
-					STRING_PAGE_SIZE,
-					MIN_PAGE_SIZE,
-					MAX_PAGE_SIZE,
-				),
-			).toBe(undefined);
+				validatePaginationRange(STRING_PAGE_SIZE, {
+					minRange: MIN_PAGE_SIZE,
+					maxRange: MAX_PAGE_SIZE,
+					inputName: INPUT_NAME,
+				}),
+			).toBeUndefined();
 		});
 		test('Should not return an error if minPageSize is a string', () => {
 			expect(
-				validatePaginationRange(
-					PAGE_SIZE,
-					STRING_MIN_PAGE_SIZE,
-					MAX_PAGE_SIZE,
-				),
-			).toBe(undefined);
+				validatePaginationRange(PAGE_SIZE, {
+					minRange: STRING_MIN_PAGE_SIZE,
+					maxRange: MAX_PAGE_SIZE,
+					inputName: INPUT_NAME,
+				}),
+			).toBeUndefined();
 		});
 		test('Should not return an error if maxPageSize is a string', () => {
 			expect(
-				validatePaginationRange(
-					PAGE_SIZE,
-					MIN_PAGE_SIZE,
-					STRING_MAX_PAGE_SIZE,
-				),
-			).toBe(undefined);
+				validatePaginationRange(PAGE_SIZE, {
+					minRange: MIN_PAGE_SIZE,
+					maxRange: STRING_MAX_PAGE_SIZE,
+					inputName: INPUT_NAME,
+				}),
+			).toBeUndefined();
 		});
 		test('Should not return an error if all args are strings', () => {
 			expect(
-				validatePaginationRange(
-					STRING_PAGE_SIZE,
-					STRING_MIN_PAGE_SIZE,
-					STRING_MAX_PAGE_SIZE,
-				),
-			).toBe(undefined);
+				validatePaginationRange(STRING_PAGE_SIZE, {
+					minRange: STRING_MIN_PAGE_SIZE,
+					maxRange: STRING_MAX_PAGE_SIZE,
+					inputName: INPUT_NAME,
+				}),
+			).toBeUndefined();
 		});
 	});
 });
