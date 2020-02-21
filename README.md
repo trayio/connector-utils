@@ -98,6 +98,9 @@ It&#39;s important to note that this method will remove objects if they become e
 as a result of the nested key/value containing an empty object (the same goes
 for arrays).</p>
 </dd>
+<dt><a href="#validatePaginationRange">validatePaginationRange(value, validation)</a></dt>
+<dd><p>Helper for validating user pagination input for a given range.</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -328,3 +331,28 @@ for arrays).
 | Param | Type | Description |
 | --- | --- | --- |
 | collection | <code>Object</code> | The collection from which to remove empty objects. |
+
+<a name="validatePaginationRange"></a>
+
+## validatePaginationRange(value, validation)
+Helper for validating user pagination input for a given range.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Integer</code> \| <code>String</code> | The value specified by user input. |
+| validation | <code>Object</code> | Values relating specifically to the validation requirements. |
+| validation.minRange | <code>Integer</code> \| <code>String</code> | The minimum range specified by the API. |
+| validation.maxRange | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API. |
+| validation.inputName | <code>String</code> | The name of the input the range is associated with. |
+
+**Example**  
+```js
+validatePaginationRange(50, { minRange: 1, maxRange: 100, inputName: 'page size' })
+// no error thrown as pagination is within range
+
+validatePaginationRange(101, { minRange: 1, maxRange: 100, inputName: 'page size' })
+// will throw a UserInputError as the pageSize is outside the range
+// Error message returned: 'The page size must be between 1 - 100.'
+```
