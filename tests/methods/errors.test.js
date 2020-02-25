@@ -9,6 +9,7 @@ const {
 const fileName = 'testing_doc.csv';
 const customMessage = 'custom error message';
 const generateError = errorType => {
+	// eslint-disable-next-line new-cap
 	throw new errorType(customMessage);
 };
 
