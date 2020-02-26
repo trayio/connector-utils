@@ -2,23 +2,18 @@ module.exports = {
 	env: {
 		node: true,
 		es6: true,
+		jest: true,
 	},
-	globals: {
-		_: true,
-	},
-	plugins: [
-		"jest"
-	],
-	extends: ['eslint:recommended', 'plugin:prettier/recommended', 'plugin:jest/recommended'],
+	plugins: ['jest'],
+	extends: ['airbnb-base', 'plugin:prettier/recommended'],
 	parserOptions: {
 		ecmaVersion: 2018,
 		sourceType: 'module',
 	},
 	rules: {
-		'prettier/prettier': 'error',
-		"no-console": 1,
-		'no-unused-vars': ["error", { "args": "none" }],
-		"prefer-template": 'error',
-		"curly": 'error'
-	}
-}
+		'jest/no-disabled-tests': 'error',
+		'jest/no-focused-tests': 'error',
+		'jest/no-identical-title': 'error',
+		camelcase: 'off',
+	},
+};
