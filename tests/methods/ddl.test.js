@@ -116,7 +116,7 @@ describe('Tests covering the mustached DDL method', () => {
 				obj.data,
 				'{{attributes.first_name}} {{attributes.last_name}}',
 				'{{id}}',
-				true,
+				{ isInteger: true },
 			),
 		).toEqual({
 			result: [
