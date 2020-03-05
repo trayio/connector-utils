@@ -1,5 +1,5 @@
 const { mustachedDDL, DDL } = require('../../lib/index');
-const { DDLError } = require('../../lib/internal/errors');
+const { ConnectorError } = require('../../lib/errors');
 
 const obj = {
 	data: [
@@ -21,7 +21,7 @@ const obj = {
 			attributes: {
 				last_name: 'Burley',
 			},
-			id: 51,
+			id: 52,
 		},
 	],
 };
@@ -39,56 +39,30 @@ describe('Tests covering the DDL DDL method', () => {
 					value: 51,
 				},
 				{
-					text: '51',
-					value: 51,
+					text: '52',
+					value: 52,
 				},
 			],
 		});
 	});
-
-	describe('Given NODE_ENV is development', () => {
-		beforeAll(() => {
-			process.env.NODE_ENV = 'development';
-		});
-		afterAll(() => {
-			process.env.NODE_ENV = 'test';
-		});
-
-		test('It should throw an error if the value path does not exist', () => {
-			expect(() =>
-				DDL(obj.data, 'attributes.first_name', 'some_path.id'),
-			).toThrow(
-				new DDLError(
-					"Path Not Found: Path at 'some_path.id' could not be found in the object.",
-				),
-			);
-		});
-
-		test('It should throw an error if the object passed is not an array', () => {
-			expect(() =>
-				DDL(
-					{ data: 'someData' },
-					'attributes.first_name',
-					'some_path.id',
-				),
-			).toThrow(
-				new DDLError(
-					'The DDL operation requires an array to be passed.',
-				),
-			);
-		});
+	test('If the value path does not exist should throw connector error', () => {
+		expect(() => {
+			DDL(obj.data, 'attributes.first_name', 'some_path.id');
+		}).toThrow(
+			new ConnectorError(
+				"Path Not Found: Path at 'some_path.id' could not be found in the object.",
+			),
+		);
 	});
 
-	test('If the value path does not exist should return empty DDL', () => {
-		expect(DDL(obj.data, 'attributes.first_name', 'some_path.id')).toEqual({
-			result: [],
-		});
-	});
-
-	test('If the object passed is not an array should return empty DDL', () => {
-		expect(
-			DDL({ data: 'someData' }, 'attributes.first_name', 'some_path.id'),
-		).toEqual({ result: [] });
+	test('If the object passed is not an array should throw a connector error', () => {
+		expect(() => {
+			DDL({ data: 'someData' }, 'attributes.first_name', 'some_path.id');
+		}).toThrow(
+			new ConnectorError(
+				'The DDL operation requires an array to be passed.',
+			),
+		);
 	});
 });
 
@@ -105,6 +79,10 @@ describe('Tests covering the mustached DDL method', () => {
 				{
 					text: 'Name: Adam',
 					value: '51',
+				},
+				{
+					text: 'Name: ',
+					value: '52',
 				},
 			],
 		});
@@ -128,73 +106,40 @@ describe('Tests covering the mustached DDL method', () => {
 					text: 'Adam Barker',
 					value: 51,
 				},
+				{
+					text: ' Burley',
+					value: 52,
+				},
 			],
 		});
 	});
 
-	test('It should filter values out if the text path does not exist', () => {
-		expect(
-			mustachedDDL(obj.data, '{{some_path.first_name}}', '{{id}}').result
-				.length,
-		).toEqual(2);
-	});
-
-	test('If the value path is specified as an int and does not exist should return empty DDL', () => {
-		expect(
+	test('If the value path is specified as an int and does not exist should throw', () => {
+		expect(() =>
 			mustachedDDL(
 				obj.data,
 				'{{attributes.first_name}}',
 				'{{some_path.id}}',
 				true,
 			),
-		).toEqual({ result: [] });
+		).toThrow(
+			new ConnectorError(
+				"Path Not Found: Path at '{{some_path.id}}' could not be found in the object.",
+			),
+		);
 	});
 
 	test('If the object passed is not an array should return empty DDL', () => {
-		expect(
+		expect(() =>
 			mustachedDDL(
 				{ data: 'someData' },
 				'{{attributes.first_name}}',
 				'{{some_path.id}}',
 			),
-		).toEqual({ result: [] });
-	});
-
-	describe('Given NODE_ENV is development', () => {
-		beforeAll(() => {
-			process.env.NODE_ENV = 'development';
-		});
-		afterAll(() => {
-			process.env.NODE_ENV = 'test';
-		});
-
-		test('It should throw an error if the value path is specified as an int and does not exist', () => {
-			expect(() =>
-				mustachedDDL(
-					obj.data,
-					'{{attributes.first_name}}',
-					'{{some_path.id}}',
-					true,
-				),
-			).toThrow(
-				new DDLError(
-					"Path Not Found: Path at '{{some_path.id}}' could not be found in the object.",
-				),
-			);
-		});
-
-		test('It should throw an error if the object passed is not an array', () => {
-			expect(() =>
-				mustachedDDL(
-					{ data: 'someData' },
-					'{{attributes.first_name}}',
-					'{{some_path.id}}',
-				),
-			).toThrow(
-				new DDLError(
-					'The DDL operation requires an array to be passed.',
-				),
-			);
-		});
+		).toThrow(
+			new ConnectorError(
+				'The DDL operation requires an array to be passed.',
+			),
+		);
 	});
 });
