@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const { deepMapKeys } = require('../../lib/index');
+
 const number = 10;
 const input = {
 	top_level: {
@@ -24,6 +25,10 @@ const input = {
 				nested_key_two: number,
 			},
 		],
+	},
+	primitive_array: [1, '2', true, null, undefined],
+	nested_primitive_array: {
+		arr: [1, '2', true, null, undefined],
 	},
 	nested_object_array: {
 		top: [
@@ -123,6 +128,10 @@ describe('Object keys should be correctly camelCased', () => {
 					nestedKeyOne: 'value',
 					nestedKeyTwo: number,
 				},
+			},
+			primitiveArray: [1, '2', true, null, undefined],
+			nestedPrimitiveArray: {
+				arr: [1, '2', true, null, undefined],
 			},
 			objectArray: {
 				top: [

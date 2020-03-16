@@ -1,4 +1,5 @@
 const { lookup } = require('../../lib/index');
+
 describe('Lookup objects should be correctly outputted', () => {
 	test('It should output a basic lookup object if only a message is passed', () => {
 		expect(lookup('run_operation')).toEqual({

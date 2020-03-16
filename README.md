@@ -1,27 +1,33 @@
 # Connector-utils
+
 Common utility functions used in connectors.
 
 ## Installation
 
-The `connector-utils` package will be inherently included as part of a new connector scaffold (as part of the Trayio yeoman generator). 
+The `connector-utils` package will be inherently included as part of a new connector scaffold (as part of the Trayio yeoman generator).
 
-When adding the package as part of an existing connector, first ensure you have the appropriate `.npmrc` present, then in your terminal, run: 
+When adding the package as part of an existing connector, first ensure you have the appropriate `.npmrc` present, then in your terminal, run:
+
 ```
 npm i @trayio/connector-utils --save
 ```
 
-## Basic Usage 
+## Basic Usage
 
 To require the package, require as `@trayio/connector-utils`:
+
 ```
 const utils = require('@trayio/connector-utils')
-``` 
+```
+
 This will give full access to the library. We can then reference utilities such as `UserInputError` by using:
+
 ```
 utils.error.UserInputError('custom error message')
 ```
 
 A better usage alternative is to use destructuring, as in the example:
+
 ```
 const { UserInputError } = require('@trayio/connector-utils/lib/errors')
 ```
@@ -106,6 +112,7 @@ for arrays).</p>
 <a name="GenericError"></a>
 
 ## GenericError ⇐ <code>Error</code>
+
 Class representing the base error for all connector errors
 
 **Kind**: global class  
@@ -113,6 +120,7 @@ Class representing the base error for all connector errors
 <a name="UserInputError"></a>
 
 ## UserInputError ⇐ [<code>GenericError</code>](#GenericError)
+
 Class representing a UserInputError
 
 **Kind**: global class  
@@ -120,17 +128,18 @@ Class representing a UserInputError
 <a name="new_UserInputError_new"></a>
 
 ### new UserInputError(message, ...errorArgs)
+
 Custom error to throw for issues concerning User Input.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | Custom error message to return. |
-| ...errorArgs | <code>any</code> | Error args allowing for extra parameters native to the normal Error class. |
+| Param        | Type                | Description                                                                |
+| ------------ | ------------------- | -------------------------------------------------------------------------- |
+| message      | <code>String</code> | Custom error message to return.                                            |
+| ...errorArgs | <code>any</code>    | Error args allowing for extra parameters native to the normal Error class. |
 
 <a name="ConnectorError"></a>
 
 ## ConnectorError ⇐ [<code>GenericError</code>](#GenericError)
+
 Class representing a ConnectorError
 
 **Kind**: global class  
@@ -138,17 +147,18 @@ Class representing a ConnectorError
 <a name="new_ConnectorError_new"></a>
 
 ### new ConnectorError(message, ...errorArgs)
+
 Custom error to throw for issues concerning the Connector.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | Custom error message to return. |
-| ...errorArgs | <code>any</code> | Error args allowing for extra parameters native to the normal Error class. |
+| Param        | Type                | Description                                                                |
+| ------------ | ------------------- | -------------------------------------------------------------------------- |
+| message      | <code>String</code> | Custom error message to return.                                            |
+| ...errorArgs | <code>any</code>    | Error args allowing for extra parameters native to the normal Error class. |
 
 <a name="ApiError"></a>
 
 ## ApiError ⇐ [<code>GenericError</code>](#GenericError)
+
 Class representing a ConnectorError
 
 **Kind**: global class  
@@ -156,17 +166,18 @@ Class representing a ConnectorError
 <a name="new_ApiError_new"></a>
 
 ### new ApiError(message, ...errorArgs)
+
 Custom error to throw for issues concerning the Api;;.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | Custom error message to return. |
-| ...errorArgs | <code>any</code> | Error args allowing for extra parameters native to the normal Error class. |
+| Param        | Type                | Description                                                                |
+| ------------ | ------------------- | -------------------------------------------------------------------------- |
+| message      | <code>String</code> | Custom error message to return.                                            |
+| ...errorArgs | <code>any</code>    | Error args allowing for extra parameters native to the normal Error class. |
 
 <a name="OAuthRefresh"></a>
 
 ## OAuthRefresh ⇐ [<code>GenericError</code>](#GenericError)
+
 Class representing a ConnectorError
 
 **Kind**: global class  
@@ -174,17 +185,18 @@ Class representing a ConnectorError
 <a name="new_OAuthRefresh_new"></a>
 
 ### new OAuthRefresh(message, ...errorArgs)
+
 Custom error to throw when an oAuth token has expired.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | Custom error message to return. |
-| ...errorArgs | <code>any</code> | Error args allowing for extra parameters native to the normal Error class. |
+| Param        | Type                | Description                                                                |
+| ------------ | ------------------- | -------------------------------------------------------------------------- |
+| message      | <code>String</code> | Custom error message to return.                                            |
+| ...errorArgs | <code>any</code>    | Error args allowing for extra parameters native to the normal Error class. |
 
 <a name="NoTriggerError"></a>
 
 ## NoTriggerError ⇐ [<code>GenericError</code>](#GenericError)
+
 Class representing a ConnectorError
 
 **Kind**: global class  
@@ -192,167 +204,190 @@ Class representing a ConnectorError
 <a name="new_NoTriggerError_new"></a>
 
 ### new NoTriggerError(message, ...errorArgs)
+
 Custom error to throw for issues when a trigger request is ignored.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | Custom error message to return. |
-| ...errorArgs | <code>any</code> | Error args allowing for extra parameters native to the normal Error class. |
+| Param        | Type                | Description                                                                |
+| ------------ | ------------------- | -------------------------------------------------------------------------- |
+| message      | <code>String</code> | Custom error message to return.                                            |
+| ...errorArgs | <code>any</code>    | Error args allowing for extra parameters native to the normal Error class. |
 
 <a name="mustachedDDL"></a>
 
-## mustachedDDL(object, text, value, isInteger)
+## mustachedDDL(arr, text, value, isInteger)
+
 Takes value paths as mustached values and returns correct DDL outputs.
 A custom flag is in place to allow for keeping integer types for the value key
 if required, as mustaching will convert an integer to string.
+If there does not exist a path, the whole result will not return.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| object | <code>Object</code> |  | The collection with keys to iterate over and format. |
-| text | <code>String</code> |  | The path for the required text value. |
-| value | <code>String</code> |  | The path for the required value, value. |
-| isInteger | <code>Boolean</code> | <code>false</code> | Flag for whether or not the value field needs to an integer rather than a string. |
+| Param     | Type                 | Description                                                                       |
+| --------- | -------------------- | --------------------------------------------------------------------------------- |
+| arr       | <code>Object</code>  | An array of objects with keys to iterate over and format.                         |
+| text      | <code>String</code>  | The path for the required text value.                                             |
+| value     | <code>String</code>  | The path for the required value, value.                                           |
+| isInteger | <code>Boolean</code> | Flag for whether or not the value field needs to an integer rather than a string. |
 
 <a name="DDL"></a>
 
-## DDL(object, textPath, valuePath)
+## DDL(arr, textPath, valuePath, options)
+
 Takes value paths as explicit strings and returns correct DDL outputs.
+If a text value does not exist, the DDL falls back to using the 'value' path.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>Object</code> | The collection with keys to iterate over and format. |
-| textPath | <code>String</code> | The path for the required text value. |
-| valuePath | <code>String</code> | The path fot the required value, value. |
+| Param     | Type                | Description                                               |
+| --------- | ------------------- | --------------------------------------------------------- |
+| arr       | <code>Object</code> | An array of objects with keys to iterate over and format. |
+| textPath  | <code>String</code> | The path for the required text value.                     |
+| valuePath | <code>String</code> | The path fot the required value, value.                   |
+| options   | <code>String</code> | Options to provide to the DDL                             |
 
 <a name="deepMapKeys"></a>
 
 ## deepMapKeys(collection, iteratee)
+
 Maps object keys and formats according to specified casing.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| collection | <code>Object</code> | The collection with keys to iterate over and format. |
-| iteratee | <code>function</code> | The format function used to format keys IE [Lodash](https://lodash.com/docs/4.17.15#camelCase) _.camelCase('some_string'). |
+| Param      | Type                  | Description                                                                                                                 |
+| ---------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| collection | <code>Object</code>   | The collection with keys to iterate over and format.                                                                        |
+| iteratee   | <code>function</code> | The format function used to format keys IE [Lodash](https://lodash.com/docs/4.17.15#camelCase) \_.camelCase('some_string'). |
 
 <a name="userInputErrorRejection"></a>
 
 ## userInputErrorRejection(message, body)
+
 Return a User Input Error with option to pass a body argument.
 The use case for this over the custom Error class is to pass a body to provide error context.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | The error message to be returned. |
-| body | <code>any</code> | Custom body to be returned when providing more error context. |
+| Param   | Type                | Description                                                   |
+| ------- | ------------------- | ------------------------------------------------------------- |
+| message | <code>String</code> | The error message to be returned.                             |
+| body    | <code>any</code>    | Custom body to be returned when providing more error context. |
 
 <a name="connectorErrorRejection"></a>
 
 ## connectorErrorRejection(message, body)
+
 Return a Connector Error with option to pass a body argument.
 The use case for this over the custom Error class is to pass a body to provide error context.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | The error message to be returned. |
-| body | <code>any</code> | Custom body to be returned when providing more error context. |
+| Param   | Type                | Description                                                   |
+| ------- | ------------------- | ------------------------------------------------------------- |
+| message | <code>String</code> | The error message to be returned.                             |
+| body    | <code>any</code>    | Custom body to be returned when providing more error context. |
 
 <a name="apiErrorRejection"></a>
 
 ## apiErrorRejection(message, body)
+
 Return a API Error with option to pass a body argument.
 The use case for this over the custom Error class is to pass a body to provide error context.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | The error message to be returned. |
-| body | <code>any</code> | Custom body to be returned when providing more error context. |
+| Param   | Type                | Description                                                   |
+| ------- | ------------------- | ------------------------------------------------------------- |
+| message | <code>String</code> | The error message to be returned.                             |
+| body    | <code>any</code>    | Custom body to be returned when providing more error context. |
 
 <a name="oauthErrorRejection"></a>
 
 ## oauthErrorRejection(message, body)
+
 Return a oAuth Error with option to pass a body argument.
 The use case for this over the custom Error class is to pass a body to provide error context.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | The error message to be returned. |
-| body | <code>any</code> | Custom body to be returned when providing more error context. |
+| Param   | Type                | Description                                                   |
+| ------- | ------------------- | ------------------------------------------------------------- |
+| message | <code>String</code> | The error message to be returned.                             |
+| body    | <code>any</code>    | Custom body to be returned when providing more error context. |
 
 <a name="noTriggerErrorRejection"></a>
 
 ## noTriggerErrorRejection(message, body)
+
 Return a No Trigger Error with option to pass a body argument.
 The use case for this over the custom Error class is to pass a body to provide error context.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>String</code> | The error message to be returned. |
-| body | <code>any</code> | Custom body to be returned when providing more error context. |
+| Param   | Type                | Description                                                   |
+| ------- | ------------------- | ------------------------------------------------------------- |
+| message | <code>String</code> | The error message to be returned.                             |
+| body    | <code>any</code>    | Custom body to be returned when providing more error context. |
 
 <a name="lookup"></a>
 
 ## lookup(message, [step_settings])
+
 Generates a lookup object for DDL operations.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| message | <code>String</code> |  | The DDL operation that is run when the lookup is executed. |
-| [step_settings] | <code>Object</code> | <code>{}</code> | The custom step settings for the lookup. |
+| Param           | Type                | Default         | Description                                                |
+| --------------- | ------------------- | --------------- | ---------------------------------------------------------- |
+| message         | <code>String</code> |                 | The DDL operation that is run when the lookup is executed. |
+| [step_settings] | <code>Object</code> | <code>{}</code> | The custom step settings for the lookup.                   |
 
 <a name="removeEmptyObjects"></a>
 
 ## removeEmptyObjects(collection)
+
 Recursively removes empty objects, arrays and strings from a collection.
 It's important to note that this method will remove objects if they become empty
 as a result of the nested key/value containing an empty object (the same goes
 for arrays).
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param      | Type                | Description                                        |
+| ---------- | ------------------- | -------------------------------------------------- |
 | collection | <code>Object</code> | The collection from which to remove empty objects. |
 
 <a name="validatePaginationRange"></a>
 
 ## validatePaginationRange(value, validation)
+
 Helper for validating user pagination input for a given range.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Integer</code> \| <code>String</code> | The value specified by user input. |
-| validation | <code>Object</code> | Values relating specifically to the validation requirements. |
-| validation.minRange | <code>Integer</code> \| <code>String</code> | The minimum range specified by the API. |
-| validation.maxRange | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API. |
-| validation.inputName | <code>String</code> | The name of the input the range is associated with. |
+| Param                | Type                                        | Description                                                  |
+| -------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| value                | <code>Integer</code> \| <code>String</code> | The value specified by user input.                           |
+| validation           | <code>Object</code>                         | Values relating specifically to the validation requirements. |
+| validation.minRange  | <code>Integer</code> \| <code>String</code> | The minimum range specified by the API.                      |
+| validation.maxRange  | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API.                      |
+| validation.inputName | <code>String</code>                         | The name of the input the range is associated with.          |
 
-**Example**  
+**Example**
+
 ```js
-validatePaginationRange(50, { minRange: 1, maxRange: 100, inputName: 'page size' })
+validatePaginationRange(50, {
+	minRange: 1,
+	maxRange: 100,
+	inputName: 'page size',
+});
 // no error thrown as pagination is within range
 
-validatePaginationRange(101, { minRange: 1, maxRange: 100, inputName: 'page size' })
+validatePaginationRange(101, {
+	minRange: 1,
+	maxRange: 100,
+	inputName: 'page size',
+});
 // will throw a UserInputError as the pageSize is outside the range
 // Error message returned: 'The page size must be between 1 - 100.'
 ```
