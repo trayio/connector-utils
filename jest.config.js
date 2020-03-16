@@ -7,5 +7,5 @@ module.exports = {
 	reporters: ['default'],
 	testEnvironment: 'node',
 	testPathIgnorePatterns: ['/node_modules/'],
-	verbose: true
+	verbose: true,
 };
