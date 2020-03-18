@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { generateInputSchema } = require('../../lib/index');
 
 const MISSING_KEYS_MESSAGE =
@@ -124,11 +125,8 @@ const fullSchema = {
 	stringType,
 };
 
-// eslint-disable-next-line no-console
 const originalConsoleError = console.error;
-// eslint-disable-next-line no-console
 const originalConsoleTable = console.table;
-// eslint-disable-next-line no-console
 const originalConsoleWarn = console.warn;
 
 let consoleErrorOutput = [];
@@ -144,20 +142,14 @@ describe('Generate input schemas', () => {
 		consoleErrorOutput = [];
 		consoleTableOutput = [];
 		consoleWarnOutput = [];
-		// eslint-disable-next-line no-console
 		console.error = mockedConsoleError;
-		// eslint-disable-next-line no-console
 		console.table = mockedConsoleTable;
-		// eslint-disable-next-line no-console
 		console.warn = mockedConsoleWarn;
 	});
 
 	afterEach(() => {
-		// eslint-disable-next-line no-console
 		console.error = originalConsoleError;
-		// eslint-disable-next-line no-console
 		console.table = originalConsoleTable;
-		// eslint-disable-next-line no-console
 		console.warn = originalConsoleWarn;
 	});
 
