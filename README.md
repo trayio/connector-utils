@@ -402,7 +402,7 @@ Will not log to the console if requested key does not exist, but is overridden w
 | keys      | <code>Object</code> | The keys that you wish to extract from the schema with any override values. |
 | operation | <code>String</code> | The name of the connector operation that you are generating the schema for. |
 
-For more information on how to use the schema generator, please see the [notion page](https://www.notion.so/trayio/Schema-Generation-42f5e57341d1473c9a61b9b0e57b31db).
+For more information on how to use the schema generator, please see [schema-generation.md](./schema-generation.md).
 
 **Example**
 
