@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { generateInputSchema } = require('../../lib/index');
+const { generateInputSchema } = require('../../../lib/index');
 
 const MISSING_KEYS_MESSAGE =
 	'There are missing schema keys that should be provided:';
