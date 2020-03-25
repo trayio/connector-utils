@@ -5,8 +5,8 @@ const obj = {
 	data: [
         {
 			attributes: {
-				first_name: 'Frodo',
-				last_name: 'Baggins',
+				first_name: 'Hux',
+				last_name: 'Millard',
 			},
 			id: 0,
 		},
@@ -38,7 +38,7 @@ describe('Tests covering the DDL DDL method', () => {
 		expect(DDL(obj.data, 'attributes.first_name', 'id')).toEqual({
 			result: [
                 {
-                  text:'Frodo',
+                  text:'Hux',
                   value:0
                 },
 				{
@@ -84,7 +84,7 @@ describe('Tests covering the mustached DDL method', () => {
 		).toEqual({
 			result: [
                 {
-                    text:'Name: Frodo',
+                    text:'Name: Hux',
                     value:'0'
                 },
 				{
@@ -114,7 +114,7 @@ describe('Tests covering the mustached DDL method', () => {
 		).toEqual({
 			result: [
                 {
-                    text:'Frodo Baggins',
+                    text:'Hux Millard',
                     value:0
                 },
 				{
