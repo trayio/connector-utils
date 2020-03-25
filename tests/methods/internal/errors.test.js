@@ -1,4 +1,4 @@
-const { XMLError, DDLError } = require('../../../lib/internal/errors');
+const { XMLError } = require('../../../lib/internal/errors');
 
 describe('Tests should correctly throw XML errors', () => {
 	test('It should throw a basic XML error with default message', () => {

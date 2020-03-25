@@ -5,7 +5,8 @@
     "main": "lib/index.js",
     "scripts": {
         "test": "jest tests",
-        "test:watch": "jest tests --watch"
+        "test:watch": "jest tests --watch",
+        "lint": "eslint ./ --fix"
     },
     "repository": {
         "type": "git",
