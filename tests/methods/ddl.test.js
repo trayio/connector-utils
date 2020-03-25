@@ -3,6 +3,13 @@ const { ConnectorError } = require('../../lib/errors');
 
 const obj = {
 	data: [
+        {
+			attributes: {
+				first_name: 'Frodo',
+				last_name: 'Baggins',
+			},
+			id: 0,
+		},
 		{
 			attributes: {
 				first_name: 'Ryan',
@@ -30,6 +37,10 @@ describe('Tests covering the DDL DDL method', () => {
 	test('It should correctly get text & value based paths passed in', () => {
 		expect(DDL(obj.data, 'attributes.first_name', 'id')).toEqual({
 			result: [
+                {
+                  text:'Frodo',
+                  value:0
+                },
 				{
 					text: 'Ryan',
 					value: 50,
@@ -72,6 +83,10 @@ describe('Tests covering the mustached DDL method', () => {
 			mustachedDDL(obj.data, 'Name: {{attributes.first_name}}', '{{id}}'),
 		).toEqual({
 			result: [
+                {
+                    text:'Name: Frodo',
+                    value:'0'
+                },
 				{
 					text: 'Name: Ryan',
 					value: '50',
@@ -98,6 +113,10 @@ describe('Tests covering the mustached DDL method', () => {
 			),
 		).toEqual({
 			result: [
+                {
+                    text:'Frodo Baggins',
+                    value:0
+                },
 				{
 					text: 'Ryan Barker',
 					value: 50,
