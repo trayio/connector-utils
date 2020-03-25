@@ -5,6 +5,13 @@ const obj = {
 	data: [
 		{
 			attributes: {
+				first_name: 'Hux',
+				last_name: 'Millard',
+			},
+			id: 0,
+		},
+		{
+			attributes: {
 				first_name: 'Ryan',
 				last_name: 'Barker',
 			},
@@ -30,6 +37,10 @@ describe('Tests covering the DDL DDL method', () => {
 	test('It should correctly get text & value based paths passed in', () => {
 		expect(DDL(obj.data, 'attributes.first_name', 'id')).toEqual({
 			result: [
+				{
+					text: 'Hux',
+					value: 0,
+				},
 				{
 					text: 'Ryan',
 					value: 50,
@@ -73,6 +84,10 @@ describe('Tests covering the mustached DDL method', () => {
 		).toEqual({
 			result: [
 				{
+					text: 'Name: Hux',
+					value: '0',
+				},
+				{
 					text: 'Name: Ryan',
 					value: '50',
 				},
@@ -98,6 +113,10 @@ describe('Tests covering the mustached DDL method', () => {
 			),
 		).toEqual({
 			result: [
+				{
+					text: 'Hux Millard',
+					value: 0,
+				},
 				{
 					text: 'Ryan Barker',
 					value: 50,
