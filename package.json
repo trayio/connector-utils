@@ -1,11 +1,11 @@
 {
 	"name": "@trayio/connector-utils",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Common utility functions used in connectors.",
 	"main": "lib/index.js",
 	"scripts": {
 		"coverage": "npm run test -- --coverage",
-		"lint": "./node_modules/.bin/eslint . --fix",
+		"lint": "eslint ./ --fix",
 		"test": "jest tests",
 		"test:watch": "jest tests --watch --notify"
 	},
