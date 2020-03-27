@@ -107,6 +107,9 @@ for arrays).</p>
 <dt><a href="#validatePaginationRange">validatePaginationRange(value, validation)</a></dt>
 <dd><p>Helper for validating user pagination input for a given range.</p>
 </dd>
+<dt><a href="#generateInputSchema">generateInputSchema({ schema, keys, operation = 'schema' })</a></dt>
+<dd><p>Helper for generating an operation input schema.</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -373,21 +376,75 @@ Helper for validating user pagination input for a given range.
 | validation.maxRange  | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API.                      |
 | validation.inputName | <code>String</code>                         | The name of the input the range is associated with.          |
 
+## generateInputSchema({ schema, keys, operation = 'schema' })
+
+Helper for generating an operation input schema.
+
+Will log to the console if:
+
+-   a requested key does not exist, or
+-   `type` or `description` keys are missing
+
+Will not log to the console if requested key does not exist, but is overridden with at least a type and description.
+
+-   @param {Object} schema The full connector schema definition.
+-   @param {Object} keys The keys that you wish to extract from the schema with any override values.
+-   @param {String} operation The name of the connector operation that you are generating the schema for.
+-   This will be used as the root of the object path when logging validation issues.
+-   @return {object} A copy of the requested schema elements.
+    \*/
+
+**Kind**: global function
+
+| Param     | Type                | Description                                                                 |
+| --------- | ------------------- | --------------------------------------------------------------------------- |
+| schema    | <code>Object</code> | The full connector schema definition.                                       |
+| keys      | <code>Object</code> | The keys that you wish to extract from the schema with any override values. |
+| operation | <code>String</code> | The name of the connector operation that you are generating the schema for. |
+
+For more information on how to use the schema generator, please see [schema-generation.md](./schema-generation.md).
+
 **Example**
 
 ```js
-validatePaginationRange(50, {
-	minRange: 1,
-	maxRange: 100,
-	inputName: 'page size',
+generateInputSchema({
+	operation: 'operationName',
+	schema: fullSchema,
+	keys: {
+		full_schema_key_1: {},
+		full_schema_key_2: {},
+		full_schema_key_3: {},
+	},
 });
-// no error thrown as pagination is within range
+/**
+ *	`fullSchema` is the complete schema definition for the connector
+ *	`full_schema_key_1` is extracted from the full schema without modification
+ *	`full_schema_key_2` is extracted from the full schema without modification
+ *	`full_schema_key_3` is extracted from the full schema without modification
+ */
 
-validatePaginationRange(101, {
-	minRange: 1,
-	maxRange: 100,
-	inputName: 'page size',
+generateInputSchema({
+	operation: 'operationName',
+	schema: fullSchema,
+	keys: {
+		full_schema_key_1: {},
+		full_schema_key_2: {
+			required: true,
+			description: 'Override key values.',
+			default: 'value',
+		},
+		new_key: {
+			type: 'string',
+			description: 'New date key, not in full schema.',
+			format: 'datetime',
+			date_mask: 'X',
+		},
+	},
 });
-// will throw a UserInputError as the pageSize is outside the range
-// Error message returned: 'The page size must be between 1 - 100.'
+/**
+ *	`fullSchema` is the complete schema definition for the connector
+ *	`full_schema_key_1` is extracted from the full schema without modification
+ *	`full_schema_key_2` is extracted from the full schema and extended/overridden with extra keys and values
+ *	`new_key` is not in the full schema but it's full keys and values are supplied
+ */
 ```
