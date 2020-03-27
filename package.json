@@ -5,7 +5,7 @@
 	"main": "lib/index.js",
 	"scripts": {
 		"coverage": "npm run test -- --coverage",
-		"lint": "eslint ./ --fix",
+		"lint": "./node_modules/.bin/eslint . --fix",
 		"test": "jest tests",
 		"test:watch": "jest tests --watch --notify"
 	},
