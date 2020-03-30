@@ -110,6 +110,9 @@ for arrays).</p>
 <dt><a href="#generateInputSchema">generateInputSchema({ schema, keys, operation = 'schema' })</a></dt>
 <dd><p>Helper for generating an operation input schema.</p>
 </dd>
+<dt><a href="#formatArrayToCommaDelimitedList">formatArrayToCommaDelimitedList({ arrayToFormat })</a></dt>
+<dd><p>Helper to take an array of strings and return a string that is a comma-delimited list of the array.</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -447,4 +450,24 @@ generateInputSchema({
  *	`full_schema_key_2` is extracted from the full schema and extended/overridden with extra keys and values
  *	`new_key` is not in the full schema but it's full keys and values are supplied
  */
+```
+
+## formatArrayToCommaDelimitedList({ arrayToFormat })
+
+Helper function that takes an array and returns a string that is a comma-delimited list of the given array.
+
+**Kind**: global function
+
+| Param         | Type                | Description                                                                        |
+| ------------- | ------------------- | ---------------------------------------------------------------------------------- |
+| arrayToFormat | <code>Object</code> | Usually an array of Strings, or else the equivalent string representation is used. |
+
+**Example**:
+
+```
+const inputArray = [1,2,'third','fourth']
+
+formatArrayToCommaDelimitedList({ arrayToFormat: inputArray })
+
+// returns '1,2,third,fourth'
 ```
