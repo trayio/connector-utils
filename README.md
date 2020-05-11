@@ -454,7 +454,7 @@ generateInputSchema({
 
 ## formatArrayToCommaDelimitedList({ arrayToFormat })
 
-Helper function that takes an array and returns a string that is a comma-delimited list of the given array.
+Helper that takes an array and returns a string that is a comma-delimited list of the given array.
 
 **Kind**: global function
 
@@ -464,7 +464,7 @@ Helper function that takes an array and returns a string that is a comma-delimit
 
 **Example**:
 
-```
+```js
 const inputArray = [1,2,'third','fourth']
 
 formatArrayToCommaDelimitedList({ arrayToFormat: inputArray })
