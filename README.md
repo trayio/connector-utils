@@ -111,7 +111,7 @@ for arrays).</p>
 <dd><p>Helper for generating an operation input schema.</p>
 </dd>
 <dt><a href="#formatArrayToDelimitedList">formatArray(arrayToFormat)</a></dt>
-<dd><p>Helper to take an array of strings and return a comma-delimited string. Alias of <a href="#formatArrayToDelimitedList">formatArrayToDelimitedList({ arrayToFormat, [delimiter]:',' })</a></p>
+<dd><p>Helper to take an array of strings and return a comma-delimited string. Alias of <code><a href="#formatArrayToDelimitedList">formatArrayToDelimitedList({ arrayToFormat, delimiter: ',' })</a></code></p>
 </dd>
 <dt><a href="#formatArrayToDelimitedList">formatArrayToDelimitedList({ arrayToFormat, [delimiter] })</a></dt>
 <dd><p>Helper to take an array of strings and return a string that is a list, delimited by the specified delimiter ('<code>,</code>' by default).</p>
