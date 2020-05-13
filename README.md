@@ -452,22 +452,27 @@ generateInputSchema({
  */
 ```
 
-## formatArrayToCommaDelimitedList({ arrayToFormat })
+## formatArrayToDelimitedList({ arrayToFormat, [delimiter] })
 
-Helper that takes an array and returns a string that is a comma-delimited list of the given array.
+Helper that takes an array and returns a string that is a delimited list of the given array.
+
+The default delimiter is a comma (`,`) but an alternative delimiter can be specified.
+
+Envisioned use-case is in an operation model to format user array input into a delimited string to assign to a parameter.  If it was an optional input and not supplied then the parameter should be `undefined`. This is reflected by the function returning `undefined` if it does not receive an array.
 
 **Kind**: global function
 
-| Param         | Type                | Description                                                                        |
-| ------------- | ------------------- | ---------------------------------------------------------------------------------- |
-| arrayToFormat | <code>Object</code> | Usually an array of Strings, or else the equivalent string representation is used. |
+| Param         | Type                | Default        | Description                                                                      |
+| ------------- | ------------------- | -------------- | -------------------------------------------------------------------------------- |
+| arrayToFormat | <code>Array</code>  |                | Usually an array of Strings, or else equivalent string representations are used. |
+| [delimiter]   | <code>String</code> | <code>,</code> | A string that will be used to separate the values.                               |
 
 **Example**:
 
 ```js
-const inputArray = [1,2,'third','fourth']
+const inputArray = [1, 2, 'third', 'fourth'];
 
-formatArrayToCommaDelimitedList({ arrayToFormat: inputArray })
+formatArrayToCommaDelimitedList({ arrayToFormat: inputArray });
 
 // returns '1,2,third,fourth'
 ```
