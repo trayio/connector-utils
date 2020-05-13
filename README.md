@@ -110,8 +110,8 @@ for arrays).</p>
 <dt><a href="#generateInputSchema">generateInputSchema({ schema, keys, operation = 'schema' })</a></dt>
 <dd><p>Helper for generating an operation input schema.</p>
 </dd>
-<dt><a href="#formatArrayToCommaDelimitedList">formatArrayToCommaDelimitedList({ arrayToFormat })</a></dt>
-<dd><p>Helper to take an array of strings and return a string that is a comma-delimited list of the array.</p>
+<dt><a href="#formatArrayToDelimitedList">formatArrayToCommaDelimitedList({ arrayToFormat })</a></dt>
+<dd><p>Helper to take an array of strings and return a string that is a list, delimited by the specified delimiter (`,` by default).</p>
 </dd>
 </dl>
 
@@ -456,9 +456,11 @@ generateInputSchema({
 
 Helper that takes an array and returns a string that is a delimited list of the given array.
 
-The default delimiter is a comma (`,`) but an alternative delimiter can be specified.
+You can instead use `formatArray(arrayToFormat)`, which is an alias of `formatArrayToDelimitedList({ arrayToFormat })` and simply uses the default delimiter (`,`).
 
-Envisioned use-case is in an operation model to format user array input into a delimited string to assign to a parameter.  If it was an optional input and not supplied then the parameter should be `undefined`. This is reflected by the function returning `undefined` if it does not receive an array.
+Using `formatArrayToDelimitedList({ arrayToFormat, [delimiter] })` will allow you to specify an alternative delimiter.
+
+The envisioned use-case is in an operation model to format user array input into a delimited string to assign to a parameter.  If it was an optional input and not supplied then the parameter should be `undefined`. This is reflected by the function returning `undefined` if it does not receive an array.
 
 **Kind**: global function
 
