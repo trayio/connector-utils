@@ -474,7 +474,7 @@ The envisioned use-case is in an operation model to format user array input into
 ```js
 const inputArray = [1, 2, 'third', 'fourth'];
 
-formatArrayToCommaDelimitedList({ arrayToFormat: inputArray });
+formatArrayToDelimitedList({ arrayToFormat: inputArray });
 
 // returns '1,2,third,fourth'
 ```
