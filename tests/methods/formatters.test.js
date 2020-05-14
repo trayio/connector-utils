@@ -1,5 +1,8 @@
 const { UserInputError } = require('../../lib/errors');
-const { formatArray, formatArrayToDelimitedList } = require('../../lib/index');
+const {
+	formatArray,
+	formatArrayToDelimitedList,
+} = require('../../lib/index').formatters;
 
 describe('Array should be correctly formatted as a delimited list', () => {
 	describe('formatArray', () => {
