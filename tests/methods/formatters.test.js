@@ -1,7 +1,4 @@
-const {
-	formatArray,
-	formatArrayToDelimitedList,
-} = require('../../lib/index').formatters;
+const { formatArray, formatArrayToDelimitedList } = require('../../lib/index');
 
 describe('Array should be correctly formatted as a Delimited List', () => {
 	describe('formatArray', () => {
