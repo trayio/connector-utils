@@ -463,7 +463,7 @@ generateInputSchema({
 
 Helper that takes an array and returns a string that is a delimited list of the given array.
 
-You can instead use `formatArray(arrayToFormat)`, which is an alias of `formatArrayToDelimitedList({ arrayToFormat })` and simply uses the default delimiter (`,`).
+Alternatively, you can instead use `formatArray(arrayToFormat)`, which is an alias of `formatArrayToDelimitedList({ arrayToFormat })` and simply uses the default delimiter (`,`).
 
 Using `formatArrayToDelimitedList({ arrayToFormat, [delimiter] })` will allow you to specify an alternative delimiter.
 
