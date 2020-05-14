@@ -10,8 +10,8 @@ describe('Array should be correctly formatted as a Delimited List', () => {
 			expect(formatArray(arrayOfStrings)).toEqual('1,2,third,fourth');
 		});
 
-		it('should return "undefined" if argument is not an array', () => {
-			expect(formatArray('Not an array')).toBeUndefined();
+		it('should return "undefined" if argument is undefined or not an array', () => {
+			expect(formatArray(undefined)).toBeUndefined();
 		});
 	});
 
@@ -33,9 +33,9 @@ describe('Array should be correctly formatted as a Delimited List', () => {
 			).toEqual('1//2//third//fourth');
 		});
 
-		it('should return "undefined" if value of "arrayToFormat" is not an array', () => {
+		it('should return "undefined" if value of "arrayToFormat" is undefined or not an array', () => {
 			expect(
-				formatArrayToDelimitedList({ arrayToFormat: 'Not an array' }),
+				formatArrayToDelimitedList({ arrayToFormat: undefined }),
 			).toBeUndefined();
 		});
 	});

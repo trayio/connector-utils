@@ -485,3 +485,10 @@ formatArrayToDelimitedList({ arrayToFormat: inputArray });
 
 // returns '1,2,third,fourth'
 ```
+
+```js
+
+formatArrayToDelimitedList({ arrayToFormat: undefined });
+
+// returns undefined
+```
