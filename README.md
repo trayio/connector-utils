@@ -110,6 +110,12 @@ for arrays).</p>
 <dt><a href="#generateInputSchema">generateInputSchema({ schema, keys, operation = 'schema' })</a></dt>
 <dd><p>Helper for generating an operation input schema.</p>
 </dd>
+<dt><a href="#formatArrayToDelimitedList">formatArray(arrayToFormat)</a></dt>
+<dd><p>Helper to take an array of strings and return a comma-delimited string. Alias of <code><a href="#formatArrayToDelimitedList">formatArrayToDelimitedList({ arrayToFormat, delimiter: ',' })</a></code></p>
+</dd>
+<dt><a href="#formatArrayToDelimitedList">formatArrayToDelimitedList({ arrayToFormat, [delimiter] })</a></dt>
+<dd><p>Helper to take an array of strings and return a string that is a list, delimited by the specified delimiter ('<code>,</code>' by default).</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -376,6 +382,8 @@ Helper for validating user pagination input for a given range.
 | validation.maxRange  | <code>Integer</code> \| <code>String</code> | The maximum range specified by the API.                      |
 | validation.inputName | <code>String</code>                         | The name of the input the range is associated with.          |
 
+<a name="generateInputSchema"></a>
+
 ## generateInputSchema({ schema, keys, operation = 'schema' })
 
 Helper for generating an operation input schema.
@@ -447,4 +455,40 @@ generateInputSchema({
  *	`full_schema_key_2` is extracted from the full schema and extended/overridden with extra keys and values
  *	`new_key` is not in the full schema but it's full keys and values are supplied
  */
+```
+
+<a name="formatArrayToDelimitedList"></a>
+
+## formatArrayToDelimitedList({ arrayToFormat, [delimiter] })
+
+Helper that takes an array and returns a string that is a delimited list of the given array.
+
+Alternatively, you can instead use `formatArray(arrayToFormat)`, which is an alias of `formatArrayToDelimitedList({ arrayToFormat })` and simply uses the default delimiter (`,`).
+
+Using `formatArrayToDelimitedList({ arrayToFormat, [delimiter] })` will allow you to specify an alternative delimiter.
+
+The envisioned use-case is in an operation model to format user array input into a delimited string to assign to a parameter. If it was an optional input and not supplied then the parameter should be `undefined`. This is reflected by the function returning `undefined` if it does not receive an array.
+
+**Kind**: global function
+
+| Param         | Type                | Default        | Description                                                                      |
+| ------------- | ------------------- | -------------- | -------------------------------------------------------------------------------- |
+| arrayToFormat | <code>Array</code>  |                | Usually an array of Strings, or else equivalent string representations are used. |
+| [delimiter]   | <code>String</code> | <code>,</code> | A string that will be used to separate the values.                               |
+
+**Example**:
+
+```js
+const inputArray = [1, 2, 'third', 'fourth'];
+
+formatArrayToDelimitedList({ arrayToFormat: inputArray });
+
+// returns '1,2,third,fourth'
+```
+
+```js
+
+formatArrayToDelimitedList({ arrayToFormat: undefined });
+
+// returns undefined
 ```
