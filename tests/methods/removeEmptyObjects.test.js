@@ -8,10 +8,12 @@ describe('Helper should remove all empty objects from the payload', () => {
 				key2: 'someval',
 				key3: {},
 				key4: 'other value',
+				key5: ['foo', 'bar'],
 			}),
 		).toEqual({
 			key2: 'someval',
 			key4: 'other value',
+			key5: ['foo', 'bar'],
 		});
 	});
 
@@ -138,6 +140,18 @@ describe('Helper should remove all empty objects from the payload', () => {
 			key4: {
 				nested2: 'value',
 			},
+		});
+	});
+	test('It does not remove string type values from arrays', () => {
+		expect(
+			removeEmptyObjects({
+				key: ['foo', 'bar'],
+				key1: [],
+				key2: [{ foo: 'bar' }],
+			}),
+		).toEqual({
+			key: ['foo', 'bar'],
+			key2: [{ foo: 'bar' }],
 		});
 	});
 });
