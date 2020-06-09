@@ -6,7 +6,7 @@ Common utility functions used in connectors.
 
 The `connector-utils` package will be inherently included as part of a new connector scaffold (as part of the Trayio yeoman generator).
 
-When adding the package as part of an existing connector, first ensure you have the appropriate `.npmrc` present, then in your terminal, run:
+When adding the package as part of an existing connector, in your terminal, run:
 
 ```
 npm i @trayio/connector-utils --save
