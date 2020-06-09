@@ -52,4 +52,40 @@ describe('removeAuthParams', () => {
 			id: 123,
 		});
 	});
+
+	it('should throw an error when the collection is not a plain object', () => {
+		const someArray = [];
+
+		expect(() => removeAuthParams(someArray)).toThrow(
+			'The collection must be a plain object.',
+		);
+	});
+
+	it('should throw an error when the additional keys is not an array', () => {
+		const hashAuthParams = {
+			'#auth': {
+				api_key: 'some api key',
+			},
+			id: 123,
+		};
+		const additionalKeys = {};
+
+		expect(() => removeAuthParams(hashAuthParams, additionalKeys)).toThrow(
+			'AdditionalKeys must be an array.',
+		);
+	});
+
+	it('should throw an error when the additional keys array contains non string types', () => {
+		const hashAuthParams = {
+			'#auth': {
+				api_key: 'some api key',
+			},
+			id: 123,
+		};
+		const additionalKeys = [123, undefined, {}];
+
+		expect(() => removeAuthParams(hashAuthParams, additionalKeys)).toThrow(
+			'AdditionalKeys array must only contain strings.',
+		);
+	});
 });
