@@ -1,6 +1,6 @@
 {
     "name": "@trayio/connector-utils",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "Common utility functions used in connectors.",
     "main": "lib/index.js",
     "scripts": {
@@ -28,8 +28,6 @@
     },
     "homepage": "https://github.com/trayio/connector-utils#readme",
     "devDependencies": {
-        "@trayio/connector-test-runner": "^0.5.0",
-        "@trayio/falafel": "^1.26.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-config-prettier": "^6.10.0",
