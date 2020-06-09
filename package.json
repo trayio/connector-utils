@@ -22,7 +22,7 @@
         "/lib"
     ],
     "author": "tray.io",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/trayio/connector-utils/issues"
     },
