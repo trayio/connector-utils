@@ -366,6 +366,19 @@ for arrays).
 | ---------- | ------------------- | -------------------------------------------------- |
 | collection | <code>Object</code> | The collection from which to remove empty objects. |
 
+<a name="removeAuthKeys"></a>
+
+## removeAuthKeys(collection, additionalKeys)
+
+Removes top levels '#' keys and additional top level keys if supplied.
+
+**Kind**: global function
+
+| Param          | Type                | Description                                                       |
+| -------------- | ------------------- | ----------------------------------------------------------------- |
+| collection     | <code>Object</code> | The collection to remove '#' keys and additional given keys from. |
+| additionalKeys | <code>Array</code>  | An array of additional key names (strings) to remove.             |
+
 <a name="validatePaginationRange"></a>
 
 ## validatePaginationRange(value, validation)
@@ -487,7 +500,6 @@ formatArrayToDelimitedList({ arrayToFormat: inputArray });
 ```
 
 ```js
-
 formatArrayToDelimitedList({ arrayToFormat: undefined });
 
 // returns undefined
