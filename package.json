@@ -42,6 +42,7 @@
         "prettier": "^1.19.1"
     },
     "dependencies": {
+        "@trayio/connector-test-runner": "^0.7.0",
         "lodash": "~4.17.15",
         "mustache": "^4.0.1"
     }
