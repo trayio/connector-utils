@@ -1,50 +1,50 @@
 {
-    "name": "@trayio/connector-utils",
-    "version": "0.3.1",
-    "description": "Common utility functions used in connectors.",
-    "main": "lib/index.js",
-    "scripts": {
-        "coverage": "npm run test -- --coverage",
-        "lint": "./node_modules/.bin/eslint . --fix",
-        "test": "jest tests",
-        "test:watch": "jest tests --watch --notify"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/trayio/falafel-utils.git"
-    },
-    "keywords": [
-        "falafel",
-        "connectors"
-    ],
-    "files": [
-        "index.js",
-        "/lib"
-    ],
-    "author": "tray.io",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/trayio/connector-utils/issues"
-    },
-    "homepage": "https://github.com/trayio/connector-utils#readme",
-    "devDependencies": {
-        "@trayio/connector-test-runner": "^0.5.0",
-        "@trayio/falafel": "^1.26.0",
-        "eslint": "^6.8.0",
-        "eslint-config-airbnb-base": "^14.1.0",
-        "eslint-config-prettier": "^6.10.0",
-        "eslint-plugin-import": "^2.20.1",
-        "eslint-plugin-jest": "^23.8.2",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-prettier": "^3.1.2",
-        "eslint-plugin-promise": "^4.2.1",
-        "jest": "^25.1.0",
-        "jest-json-schema": "^2.1.0",
-        "jsdoc-to-markdown": "^5.0.3",
-        "prettier": "^1.19.1"
-    },
-    "dependencies": {
-        "lodash": "~4.17.15",
-        "mustache": "^4.0.1"
-    }
+	"name": "@trayio/connector-utils",
+	"version": "0.3.2",
+	"description": "Common utility functions used in connectors.",
+	"main": "lib/index.js",
+	"scripts": {
+		"coverage": "npm run test -- --coverage",
+		"lint": "./node_modules/.bin/eslint . --fix",
+		"test": "jest tests",
+		"test:watch": "jest tests --watch --notify"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/trayio/falafel-utils.git"
+	},
+	"keywords": [
+		"falafel",
+		"connectors"
+	],
+	"files": [
+		"index.js",
+		"/lib"
+	],
+	"author": "tray.io",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/trayio/connector-utils/issues"
+	},
+	"homepage": "https://github.com/trayio/connector-utils#readme",
+	"devDependencies": {
+		"@trayio/connector-test-runner": "^0.5.0",
+		"@trayio/falafel": "^1.26.0",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb-base": "^14.1.0",
+		"eslint-config-prettier": "^6.10.0",
+		"eslint-plugin-import": "^2.20.1",
+		"eslint-plugin-jest": "^23.8.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-promise": "^4.2.1",
+		"jest": "^25.1.0",
+		"jest-json-schema": "^2.1.0",
+		"jsdoc-to-markdown": "^5.0.3",
+		"prettier": "^1.19.1"
+	},
+	"dependencies": {
+		"lodash": "~4.17.15",
+		"mustache": "^4.0.1"
+	}
 }
