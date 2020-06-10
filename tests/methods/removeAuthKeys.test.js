@@ -1,6 +1,6 @@
-const removeAuthParams = require('../../lib/removeAuthParams');
+const removeAuthKeys = require('../../lib/removeAuthKeys');
 
-describe('removeAuthParams', () => {
+describe('removeAuthKeys', () => {
 	it('should remove hash auth only when no additional keys are supplied', () => {
 		const hashAuthParams = {
 			'#auth': {
@@ -11,7 +11,7 @@ describe('removeAuthParams', () => {
 			id: 123,
 		};
 
-		expect(removeAuthParams(hashAuthParams)).toEqual({
+		expect(removeAuthKeys(hashAuthParams)).toEqual({
 			param: 'FooBar',
 			id: 123,
 		});
@@ -24,13 +24,13 @@ describe('removeAuthParams', () => {
 				domain: 'some domain',
 			},
 			api_token: 'some api token',
-			api_secret: 'api secret',
+			api_secret: 'some api secret',
 			param: 'FooBar',
 			id: 123,
 		};
 
 		expect(
-			removeAuthParams(hashAuthParams, ['api_token', 'api_secret']),
+			removeAuthKeys(hashAuthParams, ['api_token', 'api_secret']),
 		).toEqual({
 			param: 'FooBar',
 			id: 123,
@@ -38,15 +38,15 @@ describe('removeAuthParams', () => {
 	});
 
 	it('should remove additional keys when they are supplied and hash auth is not', () => {
-		const hashAuthParams = {
+		const nonHashAuthParams = {
 			api_token: 'some api token',
-			api_secret: 'api secret',
+			api_secret: 'some api secret',
 			param: 'FooBar',
 			id: 123,
 		};
 
 		expect(
-			removeAuthParams(hashAuthParams, ['api_token', 'api_secret']),
+			removeAuthKeys(nonHashAuthParams, ['api_token', 'api_secret']),
 		).toEqual({
 			param: 'FooBar',
 			id: 123,
@@ -56,7 +56,7 @@ describe('removeAuthParams', () => {
 	it('should throw an error when the collection is not a plain object', () => {
 		const someArray = [];
 
-		expect(() => removeAuthParams(someArray)).toThrow(
+		expect(() => removeAuthKeys(someArray)).toThrow(
 			'The collection must be a plain object.',
 		);
 	});
@@ -70,7 +70,7 @@ describe('removeAuthParams', () => {
 		};
 		const additionalKeys = {};
 
-		expect(() => removeAuthParams(hashAuthParams, additionalKeys)).toThrow(
+		expect(() => removeAuthKeys(hashAuthParams, additionalKeys)).toThrow(
 			'AdditionalKeys must be an array.',
 		);
 	});
@@ -84,7 +84,7 @@ describe('removeAuthParams', () => {
 		};
 		const additionalKeys = [123, undefined, {}];
 
-		expect(() => removeAuthParams(hashAuthParams, additionalKeys)).toThrow(
+		expect(() => removeAuthKeys(hashAuthParams, additionalKeys)).toThrow(
 			'AdditionalKeys array must only contain strings.',
 		);
 	});
