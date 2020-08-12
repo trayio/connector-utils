@@ -104,6 +104,9 @@ It&#39;s important to note that this method will remove objects if they become e
 as a result of the nested key/value containing an empty object (the same goes
 for arrays).</p>
 </dd>
+<dt><a href="#removeAuthKeys">removeAuthKeys(collection, additionalKeys)</a></dt>
+<dd><p>Removes top levels '#' keys and additional top level keys if supplied.</p>
+</dd>
 <dt><a href="#validatePaginationRange">validatePaginationRange(value, validation)</a></dt>
 <dd><p>Helper for validating user pagination input for a given range.</p>
 </dd>
