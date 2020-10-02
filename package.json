@@ -7,7 +7,8 @@
 		"coverage": "npm run test -- --coverage",
 		"lint": "./node_modules/.bin/eslint . --fix",
 		"test": "jest tests",
-		"test:watch": "jest tests --watch --notify"
+		"test:watch": "jest tests --watch --notify",
+		"update": "npx npm-check-updates -u && npm install"
 	},
 	"repository": {
 		"type": "git",
@@ -28,21 +29,21 @@
 	},
 	"homepage": "https://github.com/trayio/connector-utils#readme",
 	"devDependencies": {
-		"eslint": "^6.8.0",
-		"eslint-config-airbnb-base": "^14.1.0",
-		"eslint-config-prettier": "^6.10.0",
-		"eslint-plugin-import": "^2.20.1",
-		"eslint-plugin-jest": "^23.8.2",
-		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-prettier": "^3.1.2",
+		"eslint": "^7.10.0",
+		"eslint-config-airbnb-base": "^14.2.0",
+		"eslint-config-prettier": "^6.12.0",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jest": "^24.0.2",
+		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-prettier": "^3.1.4",
 		"eslint-plugin-promise": "^4.2.1",
-		"jest": "^25.1.0",
+		"jest": "^26.4.2",
 		"jest-json-schema": "^2.1.0",
-		"jsdoc-to-markdown": "^5.0.3",
-		"prettier": "^1.19.1"
+		"jsdoc-to-markdown": "^6.0.1",
+		"prettier": "^2.1.2"
 	},
 	"dependencies": {
-		"lodash": "~4.17.15",
+		"lodash": "~4.17.20",
 		"mustache": "^4.0.1"
 	}
 }
