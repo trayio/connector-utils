@@ -1,129 +1,10 @@
 /* eslint-disable no-console */
 const { generateInputSchema } = require('../../../lib/index');
 
+const { arrayType, fullSchema } = require('./schema');
+
 const MISSING_KEYS_MESSAGE =
 	'There are missing schema keys that should be provided:';
-
-const arrayType = {
-	type: 'array',
-	items: {
-		type: 'object',
-		title: 'Parent',
-		description: 'Array type.',
-		properties: {
-			name: {
-				type: 'string',
-			},
-			child: {
-				type: 'object',
-				title: 'child',
-				properties: {
-					name: { type: 'string' },
-				},
-			},
-		},
-	},
-	additionalItems: true,
-};
-
-const booleanType = {
-	type: 'boolean',
-};
-
-const dateType = {
-	format: 'datetime',
-	date_mask: 'X',
-};
-
-const integerType = {
-	type: 'integer',
-};
-
-const missingDescription = {
-	type: 'integer',
-};
-
-const missingType = {
-	description: 'The type is missing',
-};
-
-const numberType = {
-	type: 'number',
-	default: 5,
-};
-
-const objectType = {
-	type: 'object',
-	title: 'Parent',
-	properties: {
-		name: {
-			type: 'string',
-		},
-		child: {
-			title: 'child',
-			properties: {
-				name: { type: 'string' },
-			},
-		},
-	},
-	additionalProperties: false,
-};
-
-const oneOfType = {
-	title: 'OneOf',
-	description: 'OneOf type.',
-	oneOf: [
-		{
-			title: 'Option one',
-			type: 'object',
-			properties: {
-				user_id: {
-					title: 'Option one',
-					type: 'string',
-					lookup: {
-						step_settings: {
-							company_id: {
-								type: 'integer',
-								value: '{{{properties.company_id}}}',
-							},
-						},
-					},
-					required: true,
-				},
-			},
-		},
-		{
-			title: 'Option two',
-			type: 'object',
-			properties: {
-				account_id: {
-					title: 'Option two',
-					type: 'string',
-					lookup: {},
-					required: true,
-				},
-			},
-		},
-	],
-};
-
-const stringType = {
-	type: 'string',
-	required: true,
-};
-
-const fullSchema = {
-	arrayType,
-	booleanType,
-	dateType,
-	integerType,
-	missingDescription,
-	missingType,
-	numberType,
-	objectType,
-	oneOfType,
-	stringType,
-};
 
 const originalConsoleError = console.error;
 const originalConsoleTable = console.table;
@@ -157,6 +38,8 @@ describe('Generate input schemas', () => {
 		arrayType: {},
 		booleanType: {},
 		dateType: {},
+		enumStringType: {},
+		enumValueType: {},
 		integerType: {},
 		missingDescription: {},
 		missingType: {},
@@ -165,53 +48,6 @@ describe('Generate input schemas', () => {
 		oneOfType: {},
 		stringType: {},
 	};
-
-	let schema;
-
-	describe('Copy schema elements', () => {
-		beforeEach(() => {
-			schema = generateInputSchema({
-				schema: fullSchema,
-				keys: fullSchemaInput,
-				operation: 'testOp',
-			});
-		});
-
-		test('It should not modify the schema elements', () => {
-			expect(schema).not.toBe(fullSchema);
-			expect(schema).toEqual(fullSchema);
-		});
-
-		test.each([
-			['array'],
-			['boolean'],
-			['date'],
-			['integer'],
-			['number'],
-			['object'],
-			['oneOf'],
-			['string'],
-		])('It should copy %s types', key => {
-			const type = `${key}Type`;
-			expect(schema[type]).not.toBe(fullSchema[type]);
-			expect(schema[type]).toEqual(fullSchema[type]);
-		});
-
-		test('It should deep copy child objects', () => {
-			expect(schema.arrayType.items.properties.child).not.toBe(
-				fullSchema.arrayType.items.properties.child,
-			);
-			expect(schema.arrayType.items.properties.child).not.toBe(
-				arrayType.items.properties.child,
-			);
-			expect(schema.arrayType.items.properties.child).toEqual(
-				fullSchema.arrayType.items.properties.child,
-			);
-			expect(schema.arrayType.items.properties.child).toEqual(
-				arrayType.items.properties.child,
-			);
-		});
-	});
 
 	describe('Validation', () => {
 		test('It should log if the requested key is not found.', () => {
@@ -313,7 +149,10 @@ describe('Generate input schemas', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: {
-					override: { type: 'string', description: 'Description.' },
+					override: {
+						type: 'string',
+						description: 'Description.',
+					},
 				},
 				operation: 'testFullOverride',
 			});
@@ -412,73 +251,6 @@ describe('Generate input schemas', () => {
 					},
 				],
 			]);
-		});
-	});
-
-	describe('Generate schemas', () => {
-		test('It should generate schema from overrides only.', () => {
-			const generatedSchema = generateInputSchema({
-				schema: fullSchema,
-				keys: {
-					override: { type: 'string', description: 'Description.' },
-				},
-				operation: 'testFullOverride',
-			});
-			expect(generatedSchema).toEqual({
-				override: {
-					description: 'Description.',
-					type: 'string',
-				},
-			});
-		});
-
-		test('It should generate schema from requested key.', () => {
-			const generatedSchema = generateInputSchema({
-				schema: fullSchema,
-				keys: {
-					objectType: {},
-				},
-				operation: 'testRequestKey',
-			});
-			expect(generatedSchema).toEqual({
-				objectType: {
-					type: 'object',
-					title: 'Parent',
-					properties: {
-						name: {
-							type: 'string',
-						},
-						child: {
-							title: 'child',
-							properties: {
-								name: { type: 'string' },
-							},
-						},
-					},
-					additionalProperties: false,
-				},
-			});
-		});
-
-		test('It should generate schema from requested key with overrides.', () => {
-			const generatedSchema = generateInputSchema({
-				schema: fullSchema,
-				keys: {
-					dateType: {
-						type: 'string',
-						description: 'Date time override.',
-					},
-				},
-				operation: 'testRequestKeyWithOverrides',
-			});
-			expect(generatedSchema).toEqual({
-				dateType: {
-					date_mask: 'X',
-					description: 'Date time override.',
-					format: 'datetime',
-					type: 'string',
-				},
-			});
 		});
 	});
 });
