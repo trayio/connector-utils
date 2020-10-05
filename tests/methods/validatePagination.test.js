@@ -1,4 +1,4 @@
-const { validatePaginationRange } = require('../../');
+const { validatePaginationRange } = require('../..');
 
 const PAGE_SIZE = 50;
 const MIN_PAGE_SIZE = 1;
