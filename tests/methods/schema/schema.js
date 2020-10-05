@@ -53,8 +53,13 @@ const missingDescription = {
 	type: 'integer',
 };
 
+const missingFullStop = {
+	type: 'string',
+	description: 'When in Rome, kill me',
+};
+
 const missingType = {
-	description: 'The type is missing',
+	description: 'The type is missing.',
 };
 
 const numberType = {
@@ -130,6 +135,7 @@ const fullSchema = {
 	enumValueType,
 	integerType,
 	missingDescription,
+	missingFullStop,
 	missingType,
 	numberType,
 	objectType,
@@ -146,6 +152,7 @@ module.exports = {
 	fullSchema,
 	integerType,
 	missingDescription,
+	missingFullStop,
 	missingType,
 	numberType,
 	objectType,

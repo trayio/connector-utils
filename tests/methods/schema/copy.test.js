@@ -19,6 +19,7 @@ describe('Generate input schemas', () => {
 		enumValueType: {},
 		integerType: {},
 		missingDescription: {},
+		missingFullStop: {},
 		missingType: {},
 		numberType: {},
 		objectType: {},

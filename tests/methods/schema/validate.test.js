@@ -3,8 +3,8 @@ const { generateInputSchema } = require('../../../lib/index');
 
 const { arrayType, fullSchema } = require('./schema');
 
-const MISSING_KEYS_MESSAGE =
-	'There are missing schema keys that should be provided:';
+const INPUT_SCHEMA_PROBLEMS_MESSAGE =
+	'There are problems with the generated input schema:';
 
 const originalConsoleError = console.error;
 const originalConsoleTable = console.table;
@@ -42,6 +42,7 @@ describe('Generate input schemas', () => {
 		enumValueType: {},
 		integerType: {},
 		missingDescription: {},
+		missingFullStop: {},
 		missingType: {},
 		numberType: {},
 		objectType: {},
@@ -58,7 +59,7 @@ describe('Generate input schemas', () => {
 				},
 				operation: 'validateArrayType',
 			});
-			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
+			expect(consoleErrorOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
@@ -79,7 +80,7 @@ describe('Generate input schemas', () => {
 				keys: { missingType: {} },
 				operation: 'validateMissingType',
 			});
-			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
+			expect(consoleErrorOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
@@ -96,12 +97,29 @@ describe('Generate input schemas', () => {
 				keys: { missingDescription: {} },
 				operation: 'validateMissingDescription',
 			});
-			expect(consoleWarnOutput).toEqual([MISSING_KEYS_MESSAGE]);
+			expect(consoleWarnOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
 						key: 'validateMissingDescription.missingDescription',
 						description: 'missing',
+					},
+				],
+			]);
+		});
+
+		test('It should log if the description is missing a full stop.', () => {
+			generateInputSchema({
+				schema: fullSchema,
+				keys: { missingFullStop: {} },
+				operation: 'validateMissingFullStop',
+			});
+			expect(consoleWarnOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
+			expect(consoleTableOutput).toEqual([
+				[
+					{
+						key: 'validateMissingFullStop.missingFullStop',
+						'full stop': 'missing',
 					},
 				],
 			]);
@@ -117,7 +135,7 @@ describe('Generate input schemas', () => {
 				},
 				operation: 'validateMissingOverrideType',
 			});
-			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
+			expect(consoleErrorOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
@@ -134,7 +152,7 @@ describe('Generate input schemas', () => {
 				keys: { override: { type: 'string' } },
 				operation: 'validateMissingOverrideDescription',
 			});
-			expect(consoleWarnOutput).toEqual([MISSING_KEYS_MESSAGE]);
+			expect(consoleWarnOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
@@ -166,7 +184,7 @@ describe('Generate input schemas', () => {
 				keys: fullSchemaInput,
 				operation: 'validateFullSchema',
 			});
-			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
+			expect(consoleErrorOutput).toEqual([INPUT_SCHEMA_PROBLEMS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
@@ -207,6 +225,10 @@ describe('Generate input schemas', () => {
 					{
 						description: 'missing',
 						key: 'validateFullSchema.missingDescription',
+					},
+					{
+						key: 'validateFullSchema.missingFullStop',
+						'full stop': 'missing',
 					},
 					{
 						key: 'validateFullSchema.missingType',
