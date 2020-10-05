@@ -18,7 +18,7 @@ describe('Generate input schemas', () => {
 				keys: {
 					override: { type: 'string', description: 'Description.' },
 				},
-				operation: 'testFullOverride',
+				operation: 'fullOverride',
 			});
 			expect(generatedSchema).toEqual({
 				override: {
@@ -37,7 +37,7 @@ describe('Generate input schemas', () => {
 						description: 'Date time override.',
 					},
 				},
-				operation: 'testRequestKeyWithOverrides',
+				operation: 'keyWithTopLevelOverrides',
 			});
 			expect(generatedSchema).toEqual({
 				dateType: {
@@ -67,7 +67,7 @@ describe('Generate input schemas', () => {
 						},
 					},
 				},
-				operation: 'testRequestKeyWithOverrides',
+				operation: 'keyWithDeepOverrides',
 			});
 			expect(generatedSchema).toEqual({
 				objectType: {

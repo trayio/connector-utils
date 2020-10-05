@@ -20,7 +20,7 @@ describe('Generate input schemas', () => {
 					dateType: { alias: 'dateAlias' },
 					stringType: { alias: '' },
 				},
-				operation: 'testRequestTopLevelAliases',
+				operation: 'topLevelAliases',
 			});
 			expect(generatedSchema).toEqual({
 				booleanAlias: {
@@ -61,7 +61,7 @@ describe('Generate input schemas', () => {
 						additionalProperties: false,
 					},
 				},
-				operation: 'testRequestKeyAliases',
+				operation: 'deepAliases',
 			});
 			expect(generatedSchema).toEqual({
 				aliasType: {

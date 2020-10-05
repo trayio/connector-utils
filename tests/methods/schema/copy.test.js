@@ -33,7 +33,7 @@ describe('Generate input schemas', () => {
 			schema = generateInputSchema({
 				schema: fullSchema,
 				keys: fullSchemaInput,
-				operation: 'testOp',
+				operation: 'copySchema',
 			});
 		});
 

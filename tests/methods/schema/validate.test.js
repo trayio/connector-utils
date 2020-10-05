@@ -56,18 +56,18 @@ describe('Generate input schemas', () => {
 				keys: {
 					thisKeyDoesNotExist: {},
 				},
-				operation: 'testArrayType',
+				operation: 'validateArrayType',
 			});
 			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
-						key: 'testArrayType.thisKeyDoesNotExist',
+						key: 'validateArrayType.thisKeyDoesNotExist',
 						type: 'missing',
 					},
 					{
 						description: 'missing',
-						key: 'testArrayType.thisKeyDoesNotExist',
+						key: 'validateArrayType.thisKeyDoesNotExist',
 					},
 				],
 			]);
@@ -77,13 +77,13 @@ describe('Generate input schemas', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: { missingType: {} },
-				operation: 'testMissingType',
+				operation: 'validateMissingType',
 			});
 			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
-						key: 'testMissingType.missingType',
+						key: 'validateMissingType.missingType',
 						type: 'missing',
 					},
 				],
@@ -94,13 +94,13 @@ describe('Generate input schemas', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: { missingDescription: {} },
-				operation: 'testMissingDescription',
+				operation: 'validateMissingDescription',
 			});
 			expect(consoleWarnOutput).toEqual([MISSING_KEYS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
-						key: 'testMissingDescription.missingDescription',
+						key: 'validateMissingDescription.missingDescription',
 						description: 'missing',
 					},
 				],
@@ -115,14 +115,14 @@ describe('Generate input schemas', () => {
 						description: 'Override type is missing.',
 					},
 				},
-				operation: 'testMissingOverrideType',
+				operation: 'validateMissingOverrideType',
 			});
 			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
 						type: 'missing',
-						key: 'testMissingOverrideType.override',
+						key: 'validateMissingOverrideType.override',
 					},
 				],
 			]);
@@ -132,14 +132,14 @@ describe('Generate input schemas', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: { override: { type: 'string' } },
-				operation: 'testMissingOverrideDescription',
+				operation: 'validateMissingOverrideDescription',
 			});
 			expect(consoleWarnOutput).toEqual([MISSING_KEYS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
 						description: 'missing',
-						key: 'testMissingOverrideDescription.override',
+						key: 'validateMissingOverrideDescription.override',
 					},
 				],
 			]);
@@ -154,7 +154,7 @@ describe('Generate input schemas', () => {
 						description: 'Description.',
 					},
 				},
-				operation: 'testFullOverride',
+				operation: 'validateFullOverride',
 			});
 			expect(consoleWarnOutput).toEqual([]);
 			expect(consoleTableOutput).toEqual([]);
@@ -164,90 +164,92 @@ describe('Generate input schemas', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: fullSchemaInput,
-				operation: 'testFullSchema',
+				operation: 'validateFullSchema',
 			});
 			expect(consoleErrorOutput).toEqual([MISSING_KEYS_MESSAGE]);
 			expect(consoleTableOutput).toEqual([
 				[
 					{
 						description: 'missing',
-						key: 'testFullSchema.arrayType',
-					},
-					{
-						description: 'missing',
-						key: 'testFullSchema.arrayType.items.properties.name',
-					},
-					{
-						description: 'missing',
-						key: 'testFullSchema.arrayType.items.properties.child',
+						key: 'validateFullSchema.arrayType',
 					},
 					{
 						description: 'missing',
 						key:
-							'testFullSchema.arrayType.items.properties.child.properties.name',
+							'validateFullSchema.arrayType.items.properties.name',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.booleanType',
+						key:
+							'validateFullSchema.arrayType.items.properties.child',
 					},
 					{
-						key: 'testFullSchema.dateType',
+						description: 'missing',
+						key:
+							'validateFullSchema.arrayType.items.properties.child.properties.name',
+					},
+					{
+						description: 'missing',
+						key: 'validateFullSchema.booleanType',
+					},
+					{
+						key: 'validateFullSchema.dateType',
 						type: 'missing',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.dateType',
+						key: 'validateFullSchema.dateType',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.integerType',
+						key: 'validateFullSchema.integerType',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.missingDescription',
+						key: 'validateFullSchema.missingDescription',
 					},
 					{
-						key: 'testFullSchema.missingType',
+						key: 'validateFullSchema.missingType',
 						type: 'missing',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.numberType',
+						key: 'validateFullSchema.numberType',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.objectType',
+						key: 'validateFullSchema.objectType',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.objectType.properties.name',
+						key: 'validateFullSchema.objectType.properties.name',
 					},
 					{
-						key: 'testFullSchema.objectType.properties.child',
+						key: 'validateFullSchema.objectType.properties.child',
 						type: 'missing',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.objectType.properties.child',
+						key: 'validateFullSchema.objectType.properties.child',
 					},
 					{
 						description: 'missing',
 						key:
-							'testFullSchema.objectType.properties.child.properties.name',
+							'validateFullSchema.objectType.properties.child.properties.name',
 					},
 					{
 						description: 'missing',
 						key:
-							'testFullSchema.oneOfType.oneOf.properties.user_id',
+							'validateFullSchema.oneOfType.oneOf.properties.user_id',
 					},
 					{
 						description: 'missing',
 						key:
-							'testFullSchema.oneOfType.oneOf.properties.account_id',
+							'validateFullSchema.oneOfType.oneOf.properties.account_id',
 					},
 					{
 						description: 'missing',
-						key: 'testFullSchema.stringType',
+						key: 'validateFullSchema.stringType',
 					},
 				],
 			]);

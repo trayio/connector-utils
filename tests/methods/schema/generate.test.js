@@ -18,7 +18,7 @@ describe('Generate input schemas', () => {
 				keys: {
 					objectType: {},
 				},
-				operation: 'testRequestKey',
+				operation: 'generateByKey',
 			});
 			expect(generatedSchema).toEqual({
 				objectType: {
@@ -58,7 +58,7 @@ describe('Generate input schemas', () => {
 						},
 					},
 				},
-				operation: 'testRequestKeyWithOverrides',
+				operation: 'generateByKeyWithDeepMerge',
 			});
 			expect(generatedSchema).toEqual({
 				objectType: {
