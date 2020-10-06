@@ -21,7 +21,7 @@ describe('Generate input schemas', () => {
 				schema: fullSchema,
 				keys: {
 					enumStringType: {
-						enum: ['Four', 'Five'],
+						enum: ['Three', 'Four'],
 					},
 					enumValueType: {
 						enum: [
@@ -30,76 +30,18 @@ describe('Generate input schemas', () => {
 								value: 4,
 							},
 							{
-								text: 'Five',
-								value: 5,
-							},
-						],
-					},
-				},
-				operation: 'arrayConcatenateDefault',
-			});
-			expect(generatedSchema).toEqual({
-				enumStringType: {
-					description: 'Enum string type.',
-					enum: ['One', 'Two', 'Three', 'Four', 'Five'],
-					type: 'string',
-				},
-				enumValueType: {
-					description: 'Enum value type.',
-					enum: [
-						{
-							text: 'One',
-							value: 1,
-						},
-						{
-							text: 'Two',
-							value: 2,
-						},
-						{
-							text: 'Three',
-							value: 3,
-						},
-						{
-							text: 'Four',
-							value: 4,
-						},
-						{
-							text: 'Five',
-							value: 5,
-						},
-					],
-					type: 'integer',
-				},
-			});
-		});
-
-		test('It should concatenate arrays by request.', () => {
-			const generatedSchema = generateInputSchema({
-				schema: fullSchema,
-				keys: {
-					enumStringType: {
-						enum: ['Four', 'Five'],
-					},
-					enumValueType: {
-						enum: [
-							{
-								text: 'Four',
-								value: 4,
-							},
-							{
-								text: 'Five',
-								value: 5,
+								text: 'Three',
+								value: 3,
 							},
 						],
 					},
 				},
 				operation: 'arrayConcatenate',
-				arrayMergeType: 'concatenate',
 			});
 			expect(generatedSchema).toEqual({
 				enumStringType: {
 					description: 'Enum string type.',
-					enum: ['One', 'Two', 'Three', 'Four', 'Five'],
+					enum: ['One', 'Two', 'Three', 'Three', 'Four'],
 					type: 'string',
 				},
 				enumValueType: {
@@ -122,8 +64,8 @@ describe('Generate input schemas', () => {
 							value: 4,
 						},
 						{
-							text: 'Five',
-							value: 5,
+							text: 'Three',
+							value: 3,
 						},
 					],
 					type: 'integer',
@@ -136,13 +78,13 @@ describe('Generate input schemas', () => {
 				schema: fullSchema,
 				keys: {
 					enumStringType: {
-						enum: ['Four', 'Five'],
+						enum: ['Two', 'Five'],
 					},
 					enumValueType: {
 						enum: [
 							{
-								text: 'Four',
-								value: 4,
+								text: 'One',
+								value: 1,
 							},
 							{
 								text: 'Five',
@@ -157,15 +99,15 @@ describe('Generate input schemas', () => {
 			expect(generatedSchema).toEqual({
 				enumStringType: {
 					description: 'Enum string type.',
-					enum: ['Four', 'Five'],
+					enum: ['Two', 'Five'],
 					type: 'string',
 				},
 				enumValueType: {
 					description: 'Enum value type.',
 					enum: [
 						{
-							text: 'Four',
-							value: 4,
+							text: 'One',
+							value: 1,
 						},
 						{
 							text: 'Five',
@@ -177,22 +119,20 @@ describe('Generate input schemas', () => {
 			});
 		});
 
-		test('It should combine arrays by request.', () => {
+		test('It should index combine arrays by request.', () => {
 			const generatedSchema = generateInputSchema({
 				schema: fullSchema,
 				keys: {
 					enumStringType: {
-						enum: ['Four', 'Five'],
+						enum: ['Three', 'Four'],
 					},
 					enumValueType: {
 						enum: [
 							{
-								text: 'Four',
 								value: 4,
 							},
 							{
 								text: 'Five',
-								value: 5,
 							},
 						],
 					},
@@ -203,23 +143,80 @@ describe('Generate input schemas', () => {
 			expect(generatedSchema).toEqual({
 				enumStringType: {
 					description: 'Enum string type.',
-					enum: ['One', 'Two', 'Three', 'Four', 'Five'],
+					enum: ['One', 'Two', 'Three', 'Four'],
 					type: 'string',
 				},
 				enumValueType: {
 					description: 'Enum value type.',
 					enum: [
 						{
-							text: 'Four',
+							text: 'One',
 							value: 4,
 						},
 						{
 							text: 'Five',
-							value: 5,
+							value: 2,
 						},
 						{
 							text: 'Three',
 							value: 3,
+						},
+					],
+					type: 'integer',
+				},
+			});
+		});
+
+		test('It should hard index combine arrays by request.', () => {
+			const generatedSchema = generateInputSchema({
+				schema: fullSchema,
+				keys: {
+					enumStringType: {
+						enum: ['Three', 'Four'],
+					},
+					enumValueType: {
+						enum: [
+							{},
+							{
+								text: 'Five',
+							},
+							{
+								value: { key: 'value' },
+							},
+							{
+								text: 'Five',
+								value: 1,
+							},
+						],
+					},
+				},
+				operation: 'arrayCombine',
+				arrayMergeType: 'hardCombine',
+			});
+			expect(generatedSchema).toEqual({
+				enumStringType: {
+					description: 'Enum string type.',
+					enum: ['Three', 'Four', 'Three'],
+					type: 'string',
+				},
+				enumValueType: {
+					description: 'Enum value type.',
+					enum: [
+						{
+							text: 'One',
+							value: 1,
+						},
+						{
+							text: 'Five',
+							value: 2,
+						},
+						{
+							text: 'Three',
+							value: { key: 'value' },
+						},
+						{
+							text: 'Five',
+							value: 1,
 						},
 					],
 					type: 'integer',
