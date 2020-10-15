@@ -400,31 +400,38 @@ Helper for validating user pagination input for a given range.
 
 <a name="generateInputSchema"></a>
 
-## generateInputSchema({ schema, keys, operation = 'schema' })
+## generateInputSchema({ schema, keys, operation = 'schema', arrayMergeType = 'concatenate' })
 
 Helper for generating an operation input schema.
+
+**Kind**: global function
+
+| Param          | Type                | Description                                                                                                                                                            |
+| -------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| schema         | <code>Object</code> | The full connector schema definition.                                                                                                                                  |
+| keys           | <code>Object</code> | The keys that you wish to extract from the schema with any override values.                                                                                            |
+| operation      | <code>String</code> | The name of the connector operation that you are generating the schema for. This will be used as the root of the object path when logging validation issues. Optional. |
+| arrayMergeType | <code>String</code> | The type of merging algorithm to be used for arrays. Possible algorithms are `concatenate` (default), `combineByIndex`, `overwriteByIndex` or `overwrite`. Optional.   |
+| returns        | <code>Object</code> | A copy of the requested schema elements.                                                                                                                               |
+
+**Array merge types:**
+
+-   `concatenate` - merge arrays by concatenating values (default)
+-   `combineByIndex` - merge/combine arrays by index value
+    -   arrays of objects will merge by index (if possible)
+    -   other types will concatenate (ignoring value duplication overlap)
+-   `overwriteByIndex` - merge/overwrite arrays by index value
+    -   arrays of objects will merge by index (if possible)
+    -   other types will overwrite by index value
+-   `overwrite` - overwrite original array with specified array
 
 Will log to the console if:
 
 -   a requested key does not exist, or
--   `type` or `description` keys are missing
+-   `type` or `description` keys are missing, or
+-   a `description` does not end in a full stop
 
-Will not log to the console if requested key does not exist, but is overridden with at least a type and description.
-
--   @param {Object} schema The full connector schema definition.
--   @param {Object} keys The keys that you wish to extract from the schema with any override values.
--   @param {String} operation The name of the connector operation that you are generating the schema for.
--   This will be used as the root of the object path when logging validation issues.
--   @return {object} A copy of the requested schema elements.
-    \*/
-
-**Kind**: global function
-
-| Param     | Type                | Description                                                                 |
-| --------- | ------------------- | --------------------------------------------------------------------------- |
-| schema    | <code>Object</code> | The full connector schema definition.                                       |
-| keys      | <code>Object</code> | The keys that you wish to extract from the schema with any override values. |
-| operation | <code>String</code> | The name of the connector operation that you are generating the schema for. |
+Will not log to the console if requested key does not exist, but is overridden with at least a type and description with a full stop.
 
 For more information on how to use the schema generator, please see [schema-generation.md](./schema-generation.md).
 
@@ -439,6 +446,7 @@ generateInputSchema({
 		full_schema_key_2: {},
 		full_schema_key_3: {},
 	},
+	arrayMergeType: 'concatenate',
 });
 /**
  *	`fullSchema` is the complete schema definition for the connector
@@ -456,6 +464,7 @@ generateInputSchema({
 			required: true,
 			description: 'Override key values.',
 			default: 'value',
+			alias: 'key_2',
 		},
 		new_key: {
 			type: 'string',
@@ -468,7 +477,7 @@ generateInputSchema({
 /**
  *	`fullSchema` is the complete schema definition for the connector
  *	`full_schema_key_1` is extracted from the full schema without modification
- *	`full_schema_key_2` is extracted from the full schema and extended/overridden with extra keys and values
+ *	`full_schema_key_2` is extracted from the full schema and extended/overridden with extra keys and values. The key name will be changed to `key_2' by use of an alias.
  *	`new_key` is not in the full schema but it's full keys and values are supplied
  */
 ```
