@@ -138,7 +138,7 @@ describe('Generate input schemas', () => {
 					},
 				},
 				operation: 'arrayCombine',
-				arrayMergeType: 'mergeCombineByIndex',
+				arrayMergeType: 'combineByIndex',
 			});
 			expect(generatedSchema).toEqual({
 				enumStringType: {
@@ -191,7 +191,7 @@ describe('Generate input schemas', () => {
 					},
 				},
 				operation: 'arrayCombine',
-				arrayMergeType: 'mergeOverwriteByIndex',
+				arrayMergeType: 'overwriteByIndex',
 			});
 			expect(generatedSchema).toEqual({
 				enumStringType: {
