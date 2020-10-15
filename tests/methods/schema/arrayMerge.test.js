@@ -26,12 +26,12 @@ describe('Generate input schemas', () => {
 					enumValueType: {
 						enum: [
 							{
-								text: 'Four',
-								value: 4,
-							},
-							{
 								text: 'Three',
 								value: 3,
+							},
+							{
+								text: 'Four',
+								value: 4,
 							},
 						],
 					},
@@ -60,12 +60,12 @@ describe('Generate input schemas', () => {
 							value: 3,
 						},
 						{
-							text: 'Four',
-							value: 4,
-						},
-						{
 							text: 'Three',
 							value: 3,
+						},
+						{
+							text: 'Four',
+							value: 4,
 						},
 					],
 					type: 'integer',
@@ -124,7 +124,7 @@ describe('Generate input schemas', () => {
 				schema: fullSchema,
 				keys: {
 					enumStringType: {
-						enum: ['Three', 'Four'],
+						enum: ['Two', 'Four', 'One', 'Five'],
 					},
 					enumValueType: {
 						enum: [
@@ -138,12 +138,12 @@ describe('Generate input schemas', () => {
 					},
 				},
 				operation: 'arrayCombine',
-				arrayMergeType: 'combine',
+				arrayMergeType: 'mergeCombineByIndex',
 			});
 			expect(generatedSchema).toEqual({
 				enumStringType: {
 					description: 'Enum string type.',
-					enum: ['One', 'Two', 'Three', 'Four'],
+					enum: ['One', 'Two', 'Three', 'Four', 'Five'],
 					type: 'string',
 				},
 				enumValueType: {
@@ -167,7 +167,7 @@ describe('Generate input schemas', () => {
 			});
 		});
 
-		test('It should hard index combine arrays by request.', () => {
+		test('It should index overwrite arrays by request.', () => {
 			const generatedSchema = generateInputSchema({
 				schema: fullSchema,
 				keys: {
@@ -191,7 +191,7 @@ describe('Generate input schemas', () => {
 					},
 				},
 				operation: 'arrayCombine',
-				arrayMergeType: 'hardCombine',
+				arrayMergeType: 'mergeOverwriteByIndex',
 			});
 			expect(generatedSchema).toEqual({
 				enumStringType: {
