@@ -134,15 +134,48 @@ If you see missing types it usually means that the schema key that you requested
 
 When overriding schema elements with new schema fragments, we deep merge the existing and new schemas together. All mergeable objects will be deep merged. However, some schema element types need to be merged in specific ways. Arrays can be merged in a number of different ways:
 
-### Concatenating Arrays
+### Concatenating Arrays (default)
 
 Setting `arrayMergeType`: `'concatenate'` will merge arrays by concatenating values (default).
 
-e.g.
+e.g. (`Strings`)
 
 -   original: `['One', 'Two', 'Three']`
 -   override: `['Four', 'Five']`
 -   result: `['One', 'Two', 'Three', 'Four', 'Five']`
+
+e.g. (`Objects`)
+
+-   original:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Two', value: 2 },
+	{ text: 'Three', value: 3 },
+];
+```
+
+-   override:
+
+```js
+[
+	{ text: 'Three', value: 3 },
+	{ text: 'Four', value: 4 },
+];
+```
+
+-   result:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Two', value: 2 },
+	{ text: 'Three', value: 3 },
+	{ text: 'Three', value: 3 },
+	{ text: 'Four', value: 4 },
+];
+```
 
 ### Combine Arrays by Index
 
@@ -151,7 +184,7 @@ Setting `arrayMergeType`: `'combineByIndex'` will merge/combine arrays by index 
 -   arrays of objects will merge by index (if possible)
 -   other types will concatenate (ignoring value duplication overlap)
 
-e.g.
+e.g. (`Strings`)
 
 -   original: `['One', 'Two', 'Three']`
 -   override: `['Two', 'Four', 'One', 'Five']`
@@ -166,6 +199,34 @@ We start by copying the original array and this forms the basis of the output ar
 -   Index 2 - `One` already exists in the original array so it is ignored.
 -   Index 3 - `Five` is appended because its index is beyond the scope of the original array.
 
+e.g. (`Objects`)
+
+-   original:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Two', value: 2 },
+	{ text: 'Three', value: 3 },
+];
+```
+
+-   override:
+
+```js
+[{ value: 4 }, { text: 'Five' }];
+```
+
+-   result:
+
+```js
+[
+	{ text: 'One', value: 4 },
+	{ text: 'Five', value: 2 },
+	{ text: 'Three', value: 3 },
+];
+```
+
 ### Overwrite Arrays by Index
 
 Setting `arrayMergeType`: `'overwriteByIndex'` will merge/overwrite arrays by index value.
@@ -173,7 +234,7 @@ Setting `arrayMergeType`: `'overwriteByIndex'` will merge/overwrite arrays by in
 -   arrays of objects will merge by index (if possible)
 -   other types will overwrite by index value
 
-e.g.
+e.g. (`Strings`)
 
 -   original: `['One', 'Two', 'Three']`
 -   override: `['Three', 'Four']`
@@ -187,12 +248,71 @@ We start by copying the original array and this forms the basis of the output ar
 -   Index 1 - `Four` overwrites `Two` at index 1 of the original array.
 -   Index 2 - The override array doesn't have a value at index 2 so the original value `Three` is kept.
 
+e.g. (`Objects`)
+
+-   original:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Two', value: 2 },
+	{ text: 'Three', value: 3 },
+];
+```
+
+-   override:
+
+```js
+[{}, { text: 'Five' }, { value: { key: 'value' } }, { text: 'Five', value: 1 }];
+```
+
+-   result:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Five', value: 2 },
+	{ text: 'Three', value: { key: 'value' } },
+	{ text: 'Five', value: 1 },
+];
+```
+
 ### Overwrite Arrays
 
 Setting `arrayMergeType`: `'overwrite'` will overwrite the original array with the specified array
 
-e.g.
+e.g. (`Strings`)
 
 -   original: `['One', 'Two', 'Three']`
 -   override: `['Four', 'Five']`
 -   result: `['Four', 'Five']`
+
+e.g. (`Objects`)
+
+-   original:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Two', value: 2 },
+	{ text: 'Three', value: 3 },
+];
+```
+
+-   override:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Five', value: 5 },
+];
+```
+
+-   result:
+
+```js
+[
+	{ text: 'One', value: 1 },
+	{ text: 'Five', value: 5 },
+];
+```
