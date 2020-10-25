@@ -429,9 +429,9 @@ Will log to the console if:
 
 -   a requested key does not exist, or
 -   `type` or `description` keys are missing, or
--   a `description` does not end in a full stop
+-   a `description` does not end with valid punctuation
 
-Will not log to the console if requested key does not exist, but is overridden with at least a type and description with a full stop.
+Will not log to the console if requested key does not exist, but is overridden with at least a type and description ending with a valid punctuation mark.
 
 For more information on how to use the schema generator, please see [schema-generation.md](./schema-generation.md).
 

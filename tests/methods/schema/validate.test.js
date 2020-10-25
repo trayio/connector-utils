@@ -108,7 +108,7 @@ describe('Generate input schemas', () => {
 			]);
 		});
 
-		test('It should log if the description is missing a full stop.', () => {
+		test('It should log if the description is missing a valid ending punctuation mark.', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: { missingFullStop: {} },
@@ -119,7 +119,7 @@ describe('Generate input schemas', () => {
 				[
 					{
 						key: 'validateMissingFullStop.missingFullStop',
-						'full stop': 'missing',
+						'ending punctuation': 'missing',
 					},
 				],
 			]);
@@ -228,7 +228,7 @@ describe('Generate input schemas', () => {
 					},
 					{
 						key: 'validateFullSchema.missingFullStop',
-						'full stop': 'missing',
+						'ending punctuation': 'missing',
 					},
 					{
 						key: 'validateFullSchema.missingType',
