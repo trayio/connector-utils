@@ -104,7 +104,7 @@ module.exports = {
 
 ## Logging Schema Issues
 
-The schema generator automatically checks the generated schema for issues. It will detect when `type` keys and `description` keys are missing. It will also report missing full stops in descriptions.
+The schema generator automatically checks the generated schema for issues. It will detect when `type` keys and `description` keys are missing. It will also report missing ending punctuation marks in descriptions.
 
 Issues are logged to the console whenever the schema is generated. In practice, this means that whenever you invoke the `test-runner` or `node-dev main.js` you will be able to see and fix schema issues.
 
@@ -122,7 +122,7 @@ When using `node-dev main.js`:
 
 ![Node-dev log](./img/node-dev-log.png)
 
-Missing `description`s and full stops are logged as warnings.
+Missing `description`s and ending punctuation marks are logged as warnings.
 
 This is really useful for catching and fixing QA issues (before they happen) where input tooltips are missing.
 

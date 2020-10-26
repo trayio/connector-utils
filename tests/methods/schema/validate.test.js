@@ -108,7 +108,7 @@ describe('Generate input schemas', () => {
 			]);
 		});
 
-		test('It should log if the description is missing a full stop.', () => {
+		test('It should log if the description is missing a valid ending punctuation mark.', () => {
 			generateInputSchema({
 				schema: fullSchema,
 				keys: { missingFullStop: {} },
@@ -119,7 +119,7 @@ describe('Generate input schemas', () => {
 				[
 					{
 						key: 'validateMissingFullStop.missingFullStop',
-						'full stop': 'missing',
+						'ending punctuation': 'missing',
 					},
 				],
 			]);
@@ -178,6 +178,52 @@ describe('Generate input schemas', () => {
 			expect(consoleTableOutput).toEqual([]);
 		});
 
+		test('It should not log if the description ends with a full stop.', () => {
+			generateInputSchema({
+				schema: fullSchema,
+				keys: {
+					full_stop: {
+						type: 'string',
+						description: 'full stop.',
+					},
+				},
+				operation: 'validateFullStop',
+			});
+			expect(consoleWarnOutput).toEqual([]);
+			expect(consoleTableOutput).toEqual([]);
+		});
+
+		test('It should not log if the description ends with a question mark.', () => {
+			generateInputSchema({
+				schema: fullSchema,
+				keys: {
+					question_mark: {
+						type: 'string',
+						description: 'question mark?',
+					},
+				},
+				operation: 'validateQuestionMark',
+			});
+			expect(consoleWarnOutput).toEqual([]);
+			expect(consoleTableOutput).toEqual([]);
+		});
+
+		test('It should not log if the description ends with an exclamation mark.', () => {
+			generateInputSchema({
+				schema: fullSchema,
+				keys: {
+					exclamation_mark: {
+						type: 'string',
+						description: 'exclamation mark!',
+					},
+				},
+				operation: 'validateExclamationMark',
+			});
+			expect(consoleWarnOutput).toEqual([]);
+			expect(consoleTableOutput).toEqual([]);
+		});
+		
+
 		test('It should log all issue in full schema.', () => {
 			generateInputSchema({
 				schema: fullSchema,
@@ -228,7 +274,7 @@ describe('Generate input schemas', () => {
 					},
 					{
 						key: 'validateFullSchema.missingFullStop',
-						'full stop': 'missing',
+						'ending punctuation': 'missing',
 					},
 					{
 						key: 'validateFullSchema.missingType',
