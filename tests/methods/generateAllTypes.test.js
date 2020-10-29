@@ -6,7 +6,7 @@ const ALL_TYPES = ['string', 'number', 'object', 'array', 'boolean', 'null'];
 
 describe('generateAllTypes', () => {
 	it('should return all available JSON schema types', () => {
-		expect(generateAllTypes({})).toEqual(ALL_TYPES);
+		expect(generateAllTypes()).toEqual(ALL_TYPES);
 	});
 	it('should remove excluded type string', () => {
 		expect(generateAllTypes({ exclude: 'string' })).toEqual(

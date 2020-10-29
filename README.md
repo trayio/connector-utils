@@ -526,7 +526,7 @@ formatArrayToDelimitedList({ arrayToFormat: undefined });
 ## generateAllTypes({ exclude = '' })
 
 Helper for generating all available JSON schema types.
-You may use the "exclude" parameter to exclude any unwanted type 
+You may use the "exclude" parameter to exclude any unwanted type. 
 
 **Kind**: global function
 
@@ -539,9 +539,9 @@ You may use the "exclude" parameter to exclude any unwanted type
 ```js
 generateAllTypes({})
 
-// returns ['string','number', 'object','array','boolean','null']
+// returns ['string','number','object','array','boolean','null']
 
 generateAllTypes({exclude: 'null, boolean'})
 
-// returns ["string", "number", "object", "array"]
+// returns ['string','number','object','array']
 ```
