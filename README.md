@@ -119,6 +119,10 @@ for arrays).</p>
 <dt><a href="#formatArrayToDelimitedList">formatArrayToDelimitedList({ arrayToFormat, [delimiter] })</a></dt>
 <dd><p>Helper to take an array of strings and return a string that is a list, delimited by the specified delimiter ('<code>,</code>' by default).</p>
 </dd>
+</dd>
+<dt><a href="#generateAllTypes">generateAllTypes({ exclude = '' })</a></dt>
+<dd><p>Helper for generating all available JSON schema types.</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -515,4 +519,29 @@ formatArrayToDelimitedList({ arrayToFormat: inputArray });
 formatArrayToDelimitedList({ arrayToFormat: undefined });
 
 // returns undefined
+```
+
+<a name="generateAllTypes"></a>
+
+## generateAllTypes({ exclude = '' })
+
+Helper for generating all available JSON schema types.
+You may use the "exclude" parameter to exclude any unwanted type. 
+
+**Kind**: global function
+
+| Param         | Type                | Default        | Description                                                                      |
+| ------------- | ------------------- | -------------- | -------------------------------------------------------------------------------- |
+| exclude | <code>String</code>  | <code>''</code> | String of types separated by comma to be excluded. |
+
+**Example**:
+
+```js
+generateAllTypes({})
+
+// returns ['string','number','object','array','boolean','null']
+
+generateAllTypes({exclude: 'null, boolean'})
+
+// returns ['string','number','object','array']
 ```
