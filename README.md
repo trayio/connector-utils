@@ -120,7 +120,7 @@ for arrays).</p>
 <dd><p>Helper to take an array of strings and return a string that is a list, delimited by the specified delimiter ('<code>,</code>' by default).</p>
 </dd>
 </dd>
-<dt><a href="#generateAnyType">generateAnyType({ exclude = '' })</a></dt>
+<dt><a href="#generateAllTypes">generateAllTypes({ exclude = '' })</a></dt>
 <dd><p>Helper for generating all available JSON schema types.</p>
 </dd>
 </dl>
@@ -521,9 +521,9 @@ formatArrayToDelimitedList({ arrayToFormat: undefined });
 // returns undefined
 ```
 
-<a name="generateAnyType"></a>
+<a name="generateAllTypes"></a>
 
-## generateAnyType({ exclude = '' })
+## generateAllTypes({ exclude = '' })
 
 Helper for generating all available JSON schema types.
 You may use the "exclude" parameter to exclude any unwanted type 
@@ -537,11 +537,11 @@ You may use the "exclude" parameter to exclude any unwanted type
 **Example**:
 
 ```js
-generateAnyType({})
+generateAllTypes({})
 
 // returns ['string','number', 'object','array','boolean','null']
 
-generateAnyType({exclude: 'null, boolean'})
+generateAllTypes({exclude: 'null, boolean'})
 
 // returns ["string", "number", "object", "array"]
 ```
