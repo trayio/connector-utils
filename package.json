@@ -1,6 +1,6 @@
 {
 	"name": "@trayio/connector-utils",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "Common utility functions used in connectors.",
 	"main": "lib/index.js",
 	"scripts": {
@@ -29,21 +29,21 @@
 	},
 	"homepage": "https://github.com/trayio/connector-utils#readme",
 	"devDependencies": {
-		"eslint": "^7.11.0",
+		"eslint": "^7.12.1",
 		"eslint-config-airbnb-base": "^14.2.0",
-		"eslint-config-prettier": "^6.12.0",
+		"eslint-config-prettier": "^6.15.0",
 		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-jest": "^24.1.0",
-		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"eslint-plugin-prettier": "^3.1.4",
 		"eslint-plugin-promise": "^4.2.1",
-		"jest": "^26.5.3",
+		"jest": "^26.6.1",
 		"jest-json-schema": "^2.1.0",
 		"jsdoc-to-markdown": "^6.0.1",
 		"prettier": "^2.1.2"
 	},
 	"dependencies": {
-		"deepdash": "^5.3.0",
+		"deepdash": "^5.3.2",
 		"deepmerge": "^4.2.2",
 		"lodash": "~4.17.20",
 		"mustache": "^4.0.1"
