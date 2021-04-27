@@ -1,7 +1,7 @@
 const { removeEmptyObjects } = require('../../lib/index');
 
 describe('Helper should remove all empty objects from the payload', () => {
-	test('It removes empty objects and strings from top level of object', () => {
+	test('It removes only empty objects, strings, arrays, null and undefined from top level of object', () => {
 		expect(
 			removeEmptyObjects({
 				key: '',
@@ -9,11 +9,18 @@ describe('Helper should remove all empty objects from the payload', () => {
 				key3: {},
 				key4: 'other value',
 				key5: ['foo', 'bar'],
+				key6: false,
+				key7: undefined,
+				key8: null,
+				key9: [],
+				key10: 0,
 			}),
 		).toEqual({
 			key2: 'someval',
 			key4: 'other value',
 			key5: ['foo', 'bar'],
+			key6: false,
+			key10: 0,
 		});
 	});
 
@@ -142,6 +149,7 @@ describe('Helper should remove all empty objects from the payload', () => {
 			},
 		});
 	});
+
 	test('It does not remove string type values from arrays', () => {
 		expect(
 			removeEmptyObjects({
@@ -152,6 +160,54 @@ describe('Helper should remove all empty objects from the payload', () => {
 		).toEqual({
 			key: ['foo', 'bar'],
 			key2: [{ foo: 'bar' }],
+		});
+	});
+
+	test('It does not remove nested false or 0 values', () => {
+		expect(
+			removeEmptyObjects({
+				key: {
+					nested: {
+						nestedArray: [
+							[],
+							[[]],
+							[[{ num: 0 }], [], { bool: false }],
+							[[[false]]],
+							[{ deep: { deeper: { deepest: undefined } } }],
+							0,
+							false,
+						],
+					},
+					nested1: {
+						deep: {
+							bool: false,
+						},
+					},
+					nested2: {
+						num: 0,
+					},
+					nested3: { deep: null },
+				},
+			}),
+		).toEqual({
+			key: {
+				nested: {
+					nestedArray: [
+						[[{ num: 0 }], { bool: false }],
+						[[[false]]],
+						0,
+						false,
+					],
+				},
+				nested1: {
+					deep: {
+						bool: false,
+					},
+				},
+				nested2: {
+					num: 0,
+				},
+			},
 		});
 	});
 });
