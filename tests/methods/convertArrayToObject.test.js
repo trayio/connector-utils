@@ -14,15 +14,38 @@ const customFields1 = [
 		value: 'bar',
 	},
 ];
-
-const customFields2 = [...customFields1, { key: 'hello' }];
+const customFields2 = [
+	{
+		field_key: 'some key',
+		field_value: 'some value',
+	},
+	{
+		field_key: 'helloWorld',
+		field_value: 'hello world',
+	},
+	{
+		field_key: 'foo_bar',
+		field_value: 'foo bar',
+	},
+];
+const noValueInput = [...customFields1, { key: 'hello' }];
 
 const expectedOutput1 = {
 	key1: 'value1',
 	key2: 'value2',
 	foo: 'bar',
 };
-const expectedOutput2 = { ...expectedOutput1, hello: '' };
+const camelCaseOutput = {
+	someKey: 'some value',
+	helloWorld: 'hello world',
+	fooBar: 'foo bar',
+};
+const snakeCaseOutput = {
+	some_key: 'some value',
+	hello_world: 'hello world',
+	foo_bar: 'foo bar',
+};
+const emptyStringValueOutput = { ...expectedOutput1, hello: '' };
 
 describe('convertCustomFieldsArrToObj', () => {
 	it('Should convert array into keys and values correctly', () => {
@@ -34,35 +57,64 @@ describe('convertCustomFieldsArrToObj', () => {
 			}),
 		).toEqual(expectedOutput1);
 	});
-	it('Should add empty string values', () => {
+	it('Should create keys in camelCase', () => {
 		expect(
 			convertCustomFieldsArrToObj({
 				customFields: customFields2,
+				key: 'field_key',
+				value: 'field_value',
+			}),
+		).toEqual(camelCaseOutput);
+	});
+	it('Should create keys in snakeCase', () => {
+		expect(
+			convertCustomFieldsArrToObj({
+				customFields: customFields2,
+				key: 'field_key',
+				value: 'field_value',
+				keyCase: 'snake',
+			}),
+		).toEqual(snakeCaseOutput);
+	});
+	it('Should add empty string values to non provided values', () => {
+		expect(
+			convertCustomFieldsArrToObj({
+				customFields: noValueInput,
 				key: 'key',
 				value: 'value',
 			}),
-		).toEqual(expectedOutput2);
+		).toEqual(emptyStringValueOutput);
 	});
-	// test case
-	// test type of key and value
-
-	// it('should throw error if excluded type is not string', () => {
-	// 	expect(() =>
-	// 		convertCustomFieldsArrToObj({ arrayOfObjects: [] }),
-	// 	).toThrow('The type of "exclude" argument must be string.');
-	// });
-	// it('should throw error 1', () => {
-	// 	expect(() =>
-	// 		convertCustomFieldsArrToObj({ arrayOfObjects: [], key: 'someKey' }),
-	// 	).toThrow(
-	// 		"One of 'customFields', 'key' or 'value' has not been supplied. Please include all arguments.",
-	// 	);
-	// });
-	// it('should throw error 2', () => {
-	// 	expect(() =>
-	// 		convertCustomFieldsArrToObj({ arrayOfObjects: [] }),
-	// 	).toThrow(
-	// 		"One of 'customFields', 'key' or 'value' has not been supplied. Please include all arguments.",
-	// 	);
-	// });
+	it('Should accept key and value as string only', () => {
+		expect(() =>
+			convertCustomFieldsArrToObj({
+				customFields: customFields1,
+				key: {},
+				value: 'value',
+			}),
+		).toThrow("Type of 'key' or 'value' must be  a string");
+		expect(() =>
+			convertCustomFieldsArrToObj({
+				customFields: customFields1,
+				key: 'key',
+				value: {},
+			}),
+		).toThrow("Type of 'key' or 'value' must be  a string");
+	});
+	it('should throw error if all arguments are not supplied', () => {
+		expect(() =>
+			convertCustomFieldsArrToObj({ customFields: [], key: 'someKey' }),
+		).toThrow(
+			"One of 'customFields', 'key' or 'value' has not been supplied. Please include all arguments.",
+		);
+		expect(() =>
+			convertCustomFieldsArrToObj({
+				customFields: [],
+				key: '',
+				value: '',
+			}),
+		).toThrow(
+			"One of 'customFields', 'key' or 'value' has not been supplied. Please include all arguments.",
+		);
+	});
 });

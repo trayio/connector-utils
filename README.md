@@ -123,6 +123,15 @@ for arrays).</p>
 <dt><a href="#generateAllTypes">generateAllTypes({ exclude = '' })</a></dt>
 <dd><p>Helper for generating all available JSON schema types.</p>
 </dd>
+</dd>
+<dt><a href="#convertCustomFieldsArrToObj">convertCustomFieldsArrToObj({
+	customFields,
+	key,
+	value,
+	keyCase = 'camel',
+})</a></dt>
+<dd><p>Helper to convert array into an object of key and values pairs.</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -537,11 +546,57 @@ You may use the "exclude" parameter to exclude any unwanted type.
 **Example**:
 
 ```js
-generateAllTypes({})
+generateAllTypes()
 
 // returns ['string','number','object','array','boolean','null']
 
 generateAllTypes({exclude: 'null, boolean'})
 
 // returns ['string','number','object','array']
+```
+
+<a name="convertCustomFieldsArrToObj"></a>
+
+## convertCustomFieldsArrToObj({customFields, key, value, keyCase = 'camel' })
+
+Helper for generating all available JSON schema types.
+You may use the "exclude" parameter to exclude any unwanted type. 
+
+**Kind**: global function
+
+| Param        | Type                | Default              |  Description |
+| ------------ | ------------------- | -------------------- | ----------------------------------------------------|
+| customFields | <code>Object</code> |                      | Array of objects that demonstrate key value pairs. |
+| key          | <code>String</code> |                      | The name of the key e.g. field_name. |
+| value        | <code>String</code> |                      | The value of the key e.g. field_value. |
+| keyCase      | <code>String</code> | <code>'camel'</code> | Key case formatter, Optional. |
+| returns      | <code>Object</code> |                      | An object with key value pairs. |
+
+**Example**:
+
+```js
+const customFields = [
+	{
+		field_key: 'some key',
+		field_value: 'some value',
+	},
+	{
+		field_key: 'helloWorld',
+		field_value: 'hello world',
+	},
+	{
+		field_key: 'foo_bar',
+		field_value: 'foo bar',
+	},
+];
+
+convertCustomFieldsArrToObj(
+	{
+		customFields,
+		key: 'field_key',
+		value: 'field_value',
+	})
+
+// returns { someKey: 'some value', helloWorld: 'hello world', fooBar: 'foo bar' }
+
 ```
