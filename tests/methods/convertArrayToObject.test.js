@@ -16,15 +16,15 @@ const customFields1 = [
 ];
 const customFields2 = [
 	{
-		field_key: 'some key',
+		field_name: 'some key',
 		field_value: 'some value',
 	},
 	{
-		field_key: 'helloWorld',
+		field_name: 'helloWorld',
 		field_value: 'hello world',
 	},
 	{
-		field_key: 'foo_bar',
+		field_name: 'foo_bar',
 		field_value: 'foo bar',
 	},
 ];
@@ -61,7 +61,7 @@ describe('convertCustomFieldsArrToObj', () => {
 		expect(
 			convertCustomFieldsArrToObj({
 				customFields: customFields2,
-				key: 'field_key',
+				key: 'field_name',
 				value: 'field_value',
 			}),
 		).toEqual(camelCaseOutput);
@@ -70,7 +70,7 @@ describe('convertCustomFieldsArrToObj', () => {
 		expect(
 			convertCustomFieldsArrToObj({
 				customFields: customFields2,
-				key: 'field_key',
+				key: 'field_name',
 				value: 'field_value',
 				keyCase: 'snake',
 			}),
@@ -92,14 +92,14 @@ describe('convertCustomFieldsArrToObj', () => {
 				key: {},
 				value: 'value',
 			}),
-		).toThrow("Type of 'key' or 'value' must be  a string");
+		).toThrow("Type of 'key' or 'value' must be a string");
 		expect(() =>
 			convertCustomFieldsArrToObj({
 				customFields: customFields1,
 				key: 'key',
 				value: {},
 			}),
-		).toThrow("Type of 'key' or 'value' must be  a string");
+		).toThrow("Type of 'key' or 'value' must be a string");
 	});
 	it('should throw error if all arguments are not supplied', () => {
 		expect(() =>
