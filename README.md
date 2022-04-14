@@ -559,8 +559,7 @@ generateAllTypes({exclude: 'null, boolean'})
 
 ## convertCustomFieldsArrToObj({customFields, key, value, keyCase = 'camel' })
 
-Helper for generating all available JSON schema types.
-You may use the "exclude" parameter to exclude any unwanted type. 
+Helper to convert array into an object of key and values.
 
 **Kind**: global function
 
@@ -577,15 +576,15 @@ You may use the "exclude" parameter to exclude any unwanted type.
 ```js
 const customFields = [
 	{
-		field_key: 'some key',
+		field_name: 'some key',
 		field_value: 'some value',
 	},
 	{
-		field_key: 'helloWorld',
+		field_name: 'helloWorld',
 		field_value: 'hello world',
 	},
 	{
-		field_key: 'foo_bar',
+		field_name: 'foo_bar',
 		field_value: 'foo bar',
 	},
 ];
@@ -593,7 +592,7 @@ const customFields = [
 convertCustomFieldsArrToObj(
 	{
 		customFields,
-		key: 'field_key',
+		key: 'field_name',
 		value: 'field_value',
 	})
 
@@ -602,7 +601,7 @@ convertCustomFieldsArrToObj(
 convertCustomFieldsArrToObj(
 	{
 		customFields,
-		key: 'field_key',
+		key: 'field_name',
 		value: 'field_value',
 		keyCase: 'snake'
 	})
