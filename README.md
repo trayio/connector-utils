@@ -51,13 +51,13 @@ Please be sure to add any discovered issues or improvement recommendations to th
 <dd><p>Class representing a ConnectorError</p>
 </dd>
 <dt><a href="#ApiError">ApiError</a> ⇐ <code><a href="#GenericError">GenericError</a></code></dt>
-<dd><p>Class representing a ConnectorError</p>
+<dd><p>Class representing a ApiError</p>
 </dd>
 <dt><a href="#OAuthRefresh">OAuthRefresh</a> ⇐ <code><a href="#GenericError">GenericError</a></code></dt>
-<dd><p>Class representing a ConnectorError</p>
+<dd><p>Class representing a OAuthRefresh</p>
 </dd>
 <dt><a href="#NoTriggerError">NoTriggerError</a> ⇐ <code><a href="#GenericError">GenericError</a></code></dt>
-<dd><p>Class representing a ConnectorError</p>
+<dd><p>Class representing a NoTriggerError</p>
 </dd>
 </dl>
 
@@ -598,5 +598,16 @@ convertCustomFieldsArrToObj(
 	})
 
 // returns { someKey: 'some value', helloWorld: 'hello world', fooBar: 'foo bar' }
+
+convertCustomFieldsArrToObj(
+	{
+		customFields,
+		key: 'field_key',
+		value: 'field_value',
+		keyCase: 'snake'
+	})
+
+// returns { some_key: 'some value', hello_world: 'hello world', foo_bar: 'foo bar' }
+
 
 ```
