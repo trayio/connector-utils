@@ -130,7 +130,7 @@ for arrays).</p>
 	value,
 	keyCase = 'camel',
 })</a></dt>
-<dd><p>Helper to convert array into an object of key and values pairs.</p>
+<dd><p>Helper to convert an array into an object of key and values pairs.</p>
 </dd>
 </dl>
 
@@ -559,7 +559,7 @@ generateAllTypes({exclude: 'null, boolean'})
 
 ## convertCustomFieldsArrToObj({customFields, key, value, keyCase = 'camel' })
 
-Helper to convert array into an object of key and values.
+Helper to convert an array into an object of key and values.
 
 **Kind**: global function
 
