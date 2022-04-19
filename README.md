@@ -51,13 +51,13 @@ Please be sure to add any discovered issues or improvement recommendations to th
 <dd><p>Class representing a ConnectorError</p>
 </dd>
 <dt><a href="#ApiError">ApiError</a> ⇐ <code><a href="#GenericError">GenericError</a></code></dt>
-<dd><p>Class representing a ConnectorError</p>
+<dd><p>Class representing a ApiError</p>
 </dd>
 <dt><a href="#OAuthRefresh">OAuthRefresh</a> ⇐ <code><a href="#GenericError">GenericError</a></code></dt>
-<dd><p>Class representing a ConnectorError</p>
+<dd><p>Class representing a OAuthRefresh</p>
 </dd>
 <dt><a href="#NoTriggerError">NoTriggerError</a> ⇐ <code><a href="#GenericError">GenericError</a></code></dt>
-<dd><p>Class representing a ConnectorError</p>
+<dd><p>Class representing a NoTriggerError</p>
 </dd>
 </dl>
 
@@ -122,6 +122,15 @@ for arrays).</p>
 </dd>
 <dt><a href="#generateAllTypes">generateAllTypes({ exclude = '' })</a></dt>
 <dd><p>Helper for generating all available JSON schema types.</p>
+</dd>
+</dd>
+<dt><a href="#convertCustomFieldsArrToObj">convertCustomFieldsArrToObj({
+	customFields,
+	key,
+	value,
+	keyCase = 'camel',
+})</a></dt>
+<dd><p>Helper to convert an array into an object of key and values pairs.</p>
 </dd>
 </dl>
 
@@ -537,11 +546,67 @@ You may use the "exclude" parameter to exclude any unwanted type.
 **Example**:
 
 ```js
-generateAllTypes({})
+generateAllTypes()
 
 // returns ['string','number','object','array','boolean','null']
 
 generateAllTypes({exclude: 'null, boolean'})
 
 // returns ['string','number','object','array']
+```
+
+<a name="convertCustomFieldsArrToObj"></a>
+
+## convertCustomFieldsArrToObj({customFields, key, value, keyCase = 'camel' })
+
+Helper to convert an array into an object of key and values.
+
+**Kind**: global function
+
+| Param        | Type                | Default              |  Description |
+| ------------ | ------------------- | -------------------- | ----------------------------------------------------|
+| customFields | <code>Object</code> |                      | Array of objects that demonstrate key value pairs. |
+| key          | <code>String</code> |                      | The name of the key e.g. field_name. |
+| value        | <code>String</code> |                      | The value of the key e.g. field_value. |
+| keyCase      | <code>String</code> | <code>'camel'</code> | Key case formatter. Options are: `camel` (Default), `snake`, and any other value for custom cases (Recommended value: `custom`) Optional. |
+| returns      | <code>Object</code> |                      | An object with key value pairs. |
+
+**Example**:
+
+```js
+const customFields = [
+	{
+		field_name: 'some key',
+		field_value: 'some value',
+	},
+	{
+		field_name: 'helloWorld',
+		field_value: 'hello world',
+	},
+	{
+		field_name: 'foo_bar',
+		field_value: 'foo bar',
+	},
+];
+
+convertCustomFieldsArrToObj(
+	{
+		customFields,
+		key: 'field_name',
+		value: 'field_value',
+	})
+
+// returns { someKey: 'some value', helloWorld: 'hello world', fooBar: 'foo bar' }
+
+convertCustomFieldsArrToObj(
+	{
+		customFields,
+		key: 'field_name',
+		value: 'field_value',
+		keyCase: 'snake'
+	})
+
+// returns { some_key: 'some value', hello_world: 'hello world', foo_bar: 'foo bar' }
+
+
 ```
