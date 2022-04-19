@@ -568,7 +568,7 @@ Helper to convert array into an object of key and values.
 | customFields | <code>Object</code> |                      | Array of objects that demonstrate key value pairs. |
 | key          | <code>String</code> |                      | The name of the key e.g. field_name. |
 | value        | <code>String</code> |                      | The value of the key e.g. field_value. |
-| keyCase      | <code>String</code> | <code>'camel'</code> | Key case formatter, Optional. |
+| keyCase      | <code>String</code> | <code>'camel'</code> | Key case formatter. Options are: `camel` (Default), `snake`, and any other value for custom cases (Recommended value: `custom`) Optional. |
 | returns      | <code>Object</code> |                      | An object with key value pairs. |
 
 **Example**:

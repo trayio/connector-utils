@@ -28,6 +28,20 @@ const customFields2 = [
 		field_value: 'foo bar',
 	},
 ];
+const customFields3 = [
+	{
+		field_name: 'Some_Key',
+		field_value: 'some value',
+	},
+	{
+		field_name: 'helloWORLD',
+		field_value: 'hello world',
+	},
+	{
+		field_name: 'FOOBar',
+		field_value: 'foo bar',
+	},
+];
 const noValueInput = [...customFields1, { key: 'hello' }];
 
 const expectedOutput1 = {
@@ -44,6 +58,11 @@ const snakeCaseOutput = {
 	some_key: 'some value',
 	hello_world: 'hello world',
 	foo_bar: 'foo bar',
+};
+const customCaseOutput = {
+	Some_Key: 'some value',
+	helloWORLD: 'hello world',
+	FOOBar: 'foo bar',
 };
 const emptyStringValueOutput = { ...expectedOutput1, hello: '' };
 
@@ -75,6 +94,16 @@ describe('convertCustomFieldsArrToObj', () => {
 				keyCase: 'snake',
 			}),
 		).toEqual(snakeCaseOutput);
+	});
+	it('Should create keys in custom case', () => {
+		expect(
+			convertCustomFieldsArrToObj({
+				customFields: customFields3,
+				key: 'field_name',
+				value: 'field_value',
+				keyCase: 'custom',
+			}),
+		).toEqual(customCaseOutput);
 	});
 	it('Should add empty string values to non provided values', () => {
 		expect(
