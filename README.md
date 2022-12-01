@@ -132,6 +132,9 @@ for arrays).</p>
 })</a></dt>
 <dd><p>Helper to convert an array into an object of key and values pairs.</p>
 </dd>
+<dt><a href="#prettyTitle">prettyTitle(name)</a></dt>
+<dd><p>Create a user friendly text value.</p>
+</dd>
 </dl>
 
 <a name="GenericError"></a>
@@ -535,22 +538,22 @@ formatArrayToDelimitedList({ arrayToFormat: undefined });
 ## generateAllTypes({ exclude = '' })
 
 Helper for generating all available JSON schema types.
-You may use the "exclude" parameter to exclude any unwanted type. 
+You may use the "exclude" parameter to exclude any unwanted type.
 
 **Kind**: global function
 
-| Param         | Type                | Default        | Description                                                                      |
-| ------------- | ------------------- | -------------- | -------------------------------------------------------------------------------- |
-| exclude | <code>String</code>  | <code>''</code> | String of types separated by comma to be excluded. |
+| Param   | Type                | Default         | Description                                        |
+| ------- | ------------------- | --------------- | -------------------------------------------------- |
+| exclude | <code>String</code> | <code>''</code> | String of types separated by comma to be excluded. |
 
 **Example**:
 
 ```js
-generateAllTypes()
+generateAllTypes();
 
 // returns ['string','number','object','array','boolean','null']
 
-generateAllTypes({exclude: 'null, boolean'})
+generateAllTypes({ exclude: 'null, boolean' });
 
 // returns ['string','number','object','array']
 ```
@@ -563,13 +566,13 @@ Helper to convert an array into an object of key and values.
 
 **Kind**: global function
 
-| Param        | Type                | Default              |  Description |
-| ------------ | ------------------- | -------------------- | ----------------------------------------------------|
-| customFields | <code>Object</code> |                      | Array of objects that demonstrate key value pairs. |
-| key          | <code>String</code> |                      | The name of the key e.g. field_name. |
-| value        | <code>String</code> |                      | The value of the key e.g. field_value. |
+| Param        | Type                | Default              | Description                                                                                                                               |
+| ------------ | ------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| customFields | <code>Object</code> |                      | Array of objects that demonstrate key value pairs.                                                                                        |
+| key          | <code>String</code> |                      | The name of the key e.g. field_name.                                                                                                      |
+| value        | <code>String</code> |                      | The value of the key e.g. field_value.                                                                                                    |
 | keyCase      | <code>String</code> | <code>'camel'</code> | Key case formatter. Options are: `camel` (Default), `snake`, and any other value for custom cases (Recommended value: `custom`) Optional. |
-| returns      | <code>Object</code> |                      | An object with key value pairs. |
+| returns      | <code>Object</code> |                      | An object with key value pairs.                                                                                                           |
 
 **Example**:
 
@@ -589,24 +592,52 @@ const customFields = [
 	},
 ];
 
-convertCustomFieldsArrToObj(
-	{
-		customFields,
-		key: 'field_name',
-		value: 'field_value',
-	})
+convertCustomFieldsArrToObj({
+	customFields,
+	key: 'field_name',
+	value: 'field_value',
+});
 
 // returns { someKey: 'some value', helloWorld: 'hello world', fooBar: 'foo bar' }
 
-convertCustomFieldsArrToObj(
-	{
-		customFields,
-		key: 'field_name',
-		value: 'field_value',
-		keyCase: 'snake'
-	})
+convertCustomFieldsArrToObj({
+	customFields,
+	key: 'field_name',
+	value: 'field_value',
+	keyCase: 'snake',
+});
 
 // returns { some_key: 'some value', hello_world: 'hello world', foo_bar: 'foo bar' }
+```
 
+<a name="prettyTitle"></a>
 
+## prettyTitle(name)
+
+Create a user-friendly text value.
+
+**Kind**: global function
+
+| Param | Type                | Description   |
+| ----- | ------------------- | ------------- |
+| name  | <code>String</code> | A text value. |
+
+**Example**:
+
+```js
+prettyTitle('list-name');
+
+// returns 'List name'
+
+prettyTitle('list_name');
+
+// returns 'List name'
+
+prettyTitle('list_id_name');
+
+//returns 'List ID name'
+
+prettyTitle('list_url_name');
+
+// returns 'List URL name'
 ```
