@@ -45,7 +45,6 @@
 		"deepdash": "^5.3.9",
 		"deepmerge": "^4.2.2",
 		"lodash": "^4.17.21",
-		"mout": "^1.2.4",
 		"mustache": "^4.2.0"
 	}
 }
