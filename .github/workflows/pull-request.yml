@@ -24,9 +24,6 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
-      - name: Login to NPM
-        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.CONNECTOR_UTILS_NPM_TOKEN }}
-
       - name: Install
         run: npm ci
 
