@@ -1,0 +1,63 @@
+name: NPM Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      semver:
+        description: 'Semantic Version'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+concurrency:
+  group: npm-publish
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Configure GIT User
+        run: |
+          git config --global user.email "GHA@tray.io"
+          git config --global user.name "Tray.io GHA"
+
+      - name: Login to NPM
+        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.CONNECTOR_UTILS_NPM_TOKEN }}
+
+      - name: Install
+        run: npm ci
+
+      - name: Bump version
+        run: npm version ${{ inputs.semver }}
+
+      - name: Publish to NPM
+        run: npm publish
+
+      - name: Push Tags
+        run: git push --tags
+
+      - name: Create a Pull Request with the new version
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ github.token }}
+          title: '[EE-1663] Update package version from npm publish'
+          body: 'These changes were automatically produced by the "NPM Publish" workflow'
+          base: master
+          branch: gha/EE-1663/update-lock-file-from-npm-publish
+          commit-message: Update package version from npm publish
