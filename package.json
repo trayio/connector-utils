@@ -1,6 +1,6 @@
 {
 	"name": "@trayio/connector-utils",
-	"version": "0.4.4",
+	"version": "0.4.5",
 	"description": "Common utility functions used in connectors.",
 	"main": "lib/index.js",
 	"scripts": {
