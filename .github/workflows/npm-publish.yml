@@ -37,6 +37,13 @@ jobs:
           git config --global user.email "GHA@tray.io"
           git config --global user.name "Tray.io GHA"
 
+      - name: Generate Github App Token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.NPM_PUBLISH_APP_ID }}
+          private_key: ${{ secrets.NPM_PUBLISH_APP_PRIVATE_KEY }}
+
       - name: Login to NPM
         run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.CONNECTOR_UTILS_NPM_TOKEN }}
 
@@ -55,7 +62,7 @@ jobs:
       - name: Create a Pull Request with the new version
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ github.token }}
+          token: ${{ steps.generate_token.outputs.token }}
           title: '[EE-1663] Update package version from npm publish'
           body: 'These changes were automatically produced by the "NPM Publish" workflow'
           base: master
