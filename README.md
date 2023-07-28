@@ -36,6 +36,13 @@ A full breakdown of available utilities is included in the documentation below.
 
 Please be sure to add any discovered issues or improvement recommendations to the `Issues` tab of this repo.
 
+## Deploying
+
+Once a PR is merged into master, you will need to go into GitHub Actions UI and trigger the `NPM Publish` workflow manually providing the input of `major`, `minor` or `patch` depending on what version bump you want to publish - this will automatically build, tag, and publish the new version.
+
+Once the pipeline is done, a github tag will appear with the new version number. You will need to merge in the automatically generated pull request which bumps the package version. You can then use this tag to create a Github release with some release notes.
+
+
 # Documentation
 
 ## Classes
@@ -143,16 +150,16 @@ for arrays).</p>
 
 Class representing the base error for all connector errors
 
-**Kind**: global class  
-**Extends**: <code>Error</code>  
+**Kind**: global class
+**Extends**: <code>Error</code>
 <a name="UserInputError"></a>
 
 ## UserInputError ⇐ [<code>GenericError</code>](#GenericError)
 
 Class representing a UserInputError
 
-**Kind**: global class  
-**Extends**: [<code>GenericError</code>](#GenericError)  
+**Kind**: global class
+**Extends**: [<code>GenericError</code>](#GenericError)
 <a name="new_UserInputError_new"></a>
 
 ### new UserInputError(message, ...errorArgs)
@@ -170,8 +177,8 @@ Custom error to throw for issues concerning User Input.
 
 Class representing a ConnectorError
 
-**Kind**: global class  
-**Extends**: [<code>GenericError</code>](#GenericError)  
+**Kind**: global class
+**Extends**: [<code>GenericError</code>](#GenericError)
 <a name="new_ConnectorError_new"></a>
 
 ### new ConnectorError(message, ...errorArgs)
@@ -189,8 +196,8 @@ Custom error to throw for issues concerning the Connector.
 
 Class representing a ConnectorError
 
-**Kind**: global class  
-**Extends**: [<code>GenericError</code>](#GenericError)  
+**Kind**: global class
+**Extends**: [<code>GenericError</code>](#GenericError)
 <a name="new_ApiError_new"></a>
 
 ### new ApiError(message, ...errorArgs)
@@ -208,8 +215,8 @@ Custom error to throw for issues concerning the Api;;.
 
 Class representing a ConnectorError
 
-**Kind**: global class  
-**Extends**: [<code>GenericError</code>](#GenericError)  
+**Kind**: global class
+**Extends**: [<code>GenericError</code>](#GenericError)
 <a name="new_OAuthRefresh_new"></a>
 
 ### new OAuthRefresh(message, ...errorArgs)
@@ -227,8 +234,8 @@ Custom error to throw when an oAuth token has expired.
 
 Class representing a ConnectorError
 
-**Kind**: global class  
-**Extends**: [<code>GenericError</code>](#GenericError)  
+**Kind**: global class
+**Extends**: [<code>GenericError</code>](#GenericError)
 <a name="new_NoTriggerError_new"></a>
 
 ### new NoTriggerError(message, ...errorArgs)
